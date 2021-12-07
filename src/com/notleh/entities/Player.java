@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Player {
 
     String name;
-    ArrayList hand;
+    ArrayList<ArrayList<String>> hand;
     Integer currentScore;
     Integer winCount;
 
-    public Player(String name, ArrayList hand, Integer currentScore, Integer winCount)
+    public Player(String name, ArrayList<ArrayList<String>> hand, Integer currentScore, Integer winCount)
     {
         this.name = name;
         this.hand = hand;

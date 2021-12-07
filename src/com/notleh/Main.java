@@ -36,12 +36,14 @@ public class Main {
 
     public static void createCards(String playerHandString, ArrayList playerHand)
     {
+
+//        Makes 5 individual arrays with 0 = value & 1 = suit
         ArrayList<String> cardOne = new ArrayList<>();
         String cardOneContent = playerHandString.substring(0, 2);
         fillCards(cardOneContent, cardOne);
+//        Adds the card to the player hand array, creating a 2D array
         playerHand.add(1);
         playerHand.set(0, cardOne);
-
 
         ArrayList<String> cardTwo = new ArrayList<>();
         String cardTwoContent  = playerHandString.substring(3, 5);
@@ -85,8 +87,8 @@ public class Main {
         String playerOneHandString = validUserInput.substring(0, 14);
         System.out.println(playerOneHandString);
         ArrayList<String> playerOneHand = new ArrayList<String>();
+//        Calls create card function, which creates and fills
         createCards(playerOneHandString, playerOneHand);
-
 
         String playerTwoHandString = validUserInput.substring(15, 29);
         System.out.println(playerTwoHandString);
@@ -96,12 +98,13 @@ public class Main {
         System.out.println(playerOneHand);
         System.out.println(playerTwoHand);
 
+        allocateHand(playerOneHand, playerTwoHand);
     }
 
-    public static void allocateHand()
+    public static void allocateHand(ArrayList<ArrayList<String>> playerOneHand, ArrayList<ArrayList<String>> playerTwoHand)
     {
-        Player playerOne = new Player("playerOne", ArrayList<>playerOneHand, 0, 0);
-        Player playerTwo = new Player("playerTwo", ArrayList<>playerTwoHand, 0, 0);
+        Player playerOne = new Player("playerOne", ArrayList<playerOneHand>, 0, 0);
+        Player playerTwo = new Player("playerTwo", ArrayList<playerTwoHand>, 0, 0);
     }
 
 
