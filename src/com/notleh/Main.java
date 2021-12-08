@@ -1,6 +1,6 @@
 package com.notleh;
 
-import com.notleh.entities.Player;
+//import com.notleh.entities.Player;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -98,14 +98,14 @@ public class Main {
         System.out.println(playerOneHand);
         System.out.println(playerTwoHand);
 
-        allocateHand(playerOneHand, playerTwoHand);
+//        allocateHand(playerOneHand, playerTwoHand);
     }
 
-    public static void allocateHand(ArrayList<ArrayList<String>> playerOneHand, ArrayList<ArrayList<String>> playerTwoHand)
-    {
-        Player playerOne = new Player("playerOne", ArrayList<playerOneHand>, 0, 0);
-        Player playerTwo = new Player("playerTwo", ArrayList<playerTwoHand>, 0, 0);
-    }
+//    public static void allocateHand(ArrayList<ArrayList<String>> playerOneHand, ArrayList<ArrayList<String>> playerTwoHand)
+//    {
+//        Player playerOne = new Player("playerOne", ArrayList<playerOneHand>, 0, 0);
+//        Player playerTwo = new Player("playerTwo", ArrayList<playerTwoHand>, 0, 0);
+//    }
 
 
 }
