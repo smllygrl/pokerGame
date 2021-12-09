@@ -10,19 +10,21 @@
 //    EnumCardValues value;
 //    EnumCardSuits suit;
 //
-//   public ArrayList<String> Card (EnumCardSuits suit, EnumCardValues value)
-//   {
-//       this.value = value;
-//       this.suit = suit;
-//   }
+//    public ArrayList<String> Card(EnumCardSuits suit, EnumCardValues value) {
+//        this.value = value;
+//        this.suit = suit;
+//    }
 //
-//   public EnumCardSuits getSuit()
-//   {
-//       return suit;
-//   }
+//    public EnumCardSuits getSuit() {
+//        return suit;
+//    }
 //
-//   public EnumCardValues getValue()
-//   {
-//       return value;
-//   }
+//    public EnumCardValues getValue() {
+//        return value;
+//    }
+//
+//}
+//
+////    constructor just takes a string
+//// can use split injava
 //

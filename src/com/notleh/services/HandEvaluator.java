@@ -7,7 +7,7 @@
 //    private static Integer playerTwoScore = 0;
 //    public static Integer playerOneCount = 0;
 //    public static Integer playerTwoCount = 0;
-//
+////
 //    //    Takes in playerOneHand
 //    //    Takes in playerTwoHand
 //    public Integer findScore()
@@ -56,6 +56,12 @@
 //    2: Pair - Two cards of the same value
 //        PAIR
 
+// else test:
+//    5: Straight - All 5 cards in consecutive order
+//        STRAIGHT
+//
+//    1: High Card - Highest value card
+//        HIGH_CARD
 // else test:
 //    5: Straight - All 5 cards in consecutive order
 //        STRAIGHT

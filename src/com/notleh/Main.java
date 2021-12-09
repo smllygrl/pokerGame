@@ -3,9 +3,11 @@ package com.notleh;
 //import com.notleh.entities.Player;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -16,6 +18,9 @@ public class Main {
         String inputHandString = input.nextLine();
         validateHand(inputHandString);
         buildHand(inputHandString);
+
+        String test = "t e s t";
+        testSuite(test);
     }
 
     public static boolean validateHand(String string) {
@@ -86,14 +91,18 @@ public class Main {
 
         String playerOneHandString = validUserInput.substring(0, 14);
         System.out.println(playerOneHandString);
+        sortHand(playerOneHandString);
         ArrayList<String> playerOneHand = new ArrayList<String>();
 //        Calls create card function, which creates and fills
         createCards(playerOneHandString, playerOneHand);
+//        playerOneHand.stream().sorted();
 
         String playerTwoHandString = validUserInput.substring(15, 29);
         System.out.println(playerTwoHandString);
+        sortHand(playerTwoHandString);
         ArrayList<String> playerTwoHand = new ArrayList<String>();
         createCards(playerTwoHandString, playerTwoHand);
+//        playerTwoHand.stream().sorted();
 
         System.out.println(playerOneHand);
         System.out.println(playerTwoHand);
@@ -101,11 +110,38 @@ public class Main {
 //        allocateHand(playerOneHand, playerTwoHand);
     }
 
+    public static void testSuite(String testString)
+    {
+        sortHand(testString);
+        System.out.println(testString);
+    }
+
 //    public static void allocateHand(ArrayList<ArrayList<String>> playerOneHand, ArrayList<ArrayList<String>> playerTwoHand)
 //    {
 //        Player playerOne = new Player("playerOne", ArrayList<playerOneHand>, 0, 0);
 //        Player playerTwo = new Player("playerTwo", ArrayList<playerTwoHand>, 0, 0);
 //    }
+
+//public static ArrayList sortHand(ArrayList<String> str)
+//{
+//    return ArrayList.stream().sorted();
+//}
+//
+//
+
+//    Sorting means I can confidently start with the lowest value in my loops
+//    public static boolean royalFlushTest(ArrayList<String> hand)
+//    {
+//        for (int i = 0; i < ; i++) {
+//
+//        }
+//    }
+//
+    public static Stream<String> sortHand (String playerHandString)
+    {
+        String[] playerHandStringSplit = playerHandString.split("");
+        return Arrays.stream(playerHandStringSplit).sorted();
+    }
 
 
 }

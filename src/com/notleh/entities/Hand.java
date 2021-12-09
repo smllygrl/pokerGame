@@ -55,7 +55,11 @@
 //        return handSuits;
 //    }
 //
-////    create eval checks in here?
 //
+////    create eval checks in here
+//
+////    list of cards
+////    hand created, sort cards ahead of time
+////    sort by values
 //
 //}

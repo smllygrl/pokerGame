@@ -8,3 +8,13 @@
 
 - Player and Player Methods
 -> Can an array be in a constructor? re. hand
+
+Freshen up on streams/ array lists (h2/ 2 hr)
+
+implement 2 checks hand checks
+
+______
+
+
+public boolean contains(Object o)
+
