@@ -1,6 +1,7 @@
 package com.notleh;
 
 //import com.notleh.entities.Player;
+import com.notleh.entities.Card;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -45,6 +45,8 @@ public class HandEvaluator {
         {
             player.currentScore = TWO_PAIRS;
         }
+
+        return count;
     }
     
 
