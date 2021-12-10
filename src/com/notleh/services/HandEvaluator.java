@@ -1,27 +1,52 @@
-//package com.notleh.services;
-//
-//public class HandEvaluator {
-//
-//
-//    private static Integer playerOneScore = 0;
-//    private static Integer playerTwoScore = 0;
-//    public static Integer playerOneCount = 0;
-//    public static Integer playerTwoCount = 0;
-////
-//    //    Takes in playerOneHand
-//    //    Takes in playerTwoHand
-//    public Integer findScore()
-//    {
-//
-//        //    Values:
-//        //    A 2 3 4 5 6 7 8 9 T (T is 10) J Q K
-//        //    Suits:
-//        //    H D S C
-//
-////        PlayerOneHand AH 9S 4D TD 8S
-////        PlayerTwoHand 4H JS 3C TC 8D
-//
-////    figure out category of hand and return enum value as score
+package com.notleh.services;
+
+import com.notleh.enums.EnumHandScores;
+
+import java.util.ArrayList;
+
+import static com.notleh.enums.EnumHandScores.*;
+import static com.notleh.enums.EnumCardValues.*;
+import static com.notleh.enums.EnumCardSuits.*;
+
+public class HandEvaluator {
+
+    //    Sorting means I can confidently start with the lowest value in my loops
+
+    public static boolean royalFlushTest(ArrayList<String> hand)
+    {
+        if (cardOne.getSuit == cardFive.getSuit)
+        {
+            if (cardOne.value == "T" && cardFive.value == "A")
+                player.currentScore = ROYAL_FLUSH;
+            return true;
+        }
+        return false;
+    }
+
+    public static int pairTest(ArrayList<String> hand)
+    {
+        int count = 0;
+
+        for (int i = 0; i < HAND_SIZE; i++) {
+            for (int j = 0; j < 2; j++) {
+                if (ArrayList[i][j] == ArrayList[i+1][j+1])
+                {
+                    count = count + 1;
+                }
+            }
+        }
+
+        if (count == 1)
+        {
+            player.currentScore = PAIR;
+        }
+
+        if (count == 2)
+        {
+            player.currentScore = TWO_PAIRS;
+        }
+    }
+    
 
 // if suits all match
 // test:
@@ -33,8 +58,7 @@
 //
 //    6: Flush - All five cards having the same suit
 //        FLUSH
-
-
+//
 // if 3 or more cards have same value
 // test:
 //    8: Four of a kind - Four cards with the same value
@@ -45,9 +69,7 @@
 //
 //    4: Three of a kind - Three cards of the same value
 //        THREE_OF_KIND
-
-
-
+//
 // if 2 cards have the same value
 // test:
 //    3: Two Pairs - Two different pairs
@@ -55,7 +77,7 @@
 //
 //    2: Pair - Two cards of the same value
 //        PAIR
-
+//
 // else test:
 //    5: Straight - All 5 cards in consecutive order
 //        STRAIGHT
@@ -68,12 +90,9 @@
 //
 //    1: High Card - Highest value card
 //        HIGH_CARD
-
 //    }
+    
 
-////    Returns playerOneScore
-////    Returns playerTwoScore
-//
 //    public Integer solveDraw()
 //    {
 //
@@ -95,15 +114,6 @@
 //    {
 //        playerTwoCount = playerTwoCount + 1;
 //    }
-//
-////    Returns player SCORE
-//
-////    Split each indiv index into value eg. A and suit eg. H
-////    If p1 score = p2 score: additional check
-////    Check value of card, highest value card = +1 SCORE
-//
-////    If p1 score > p2 score: p1 COUNT = + 1
-//
-////    p1 + p2 score = 0
-//
-//}
+//    
+
+}

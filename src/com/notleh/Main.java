@@ -129,19 +129,10 @@ public class Main {
 //
 //
 
-//    Sorting means I can confidently start with the lowest value in my loops
-//    public static boolean royalFlushTest(ArrayList<String> hand)
-//    {
-//        for (int i = 0; i < ; i++) {
-//
-//        }
-//    }
-//
-    public static Stream<String> sortHand (String playerHandString)
-    {
-        String[] playerHandStringSplit = playerHandString.split("");
-        return Arrays.stream(playerHandStringSplit).sorted();
-    }
+
+
+
+
 
 
 }
