@@ -1,6 +1,7 @@
 package com.notleh.entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.notleh.enums.EnumCardSuits;
 import com.notleh.enums.EnumCardSuits.*;
@@ -12,11 +13,19 @@ public class Hand {
 
     static int HAND_SIZE = 5;
 
-    public Hand(ArrayList<Card> cards
-    {
+    public ArrayList<Card> cardsInHand = null;
 
+    public buildHand(String cardArrValue)
+    {
+        for (int i = 0; i < HAND_SIZE; i++) {
+            cardsInHand.add(Card(cardArrValue));
+        }
     }
 
+    public List<Card> getCards()
+    {
+        return cards;
+    }
 //    public ArrayList (String[] sortedPlayerCardsArr)
 //    {
 //

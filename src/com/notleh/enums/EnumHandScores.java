@@ -24,3 +24,5 @@ public enum EnumHandScores {
         return score;
     }
 }
+
+// Heavily references: https://gitlab.com/dakimar1/poker-hand-sorter/-/blob/master/src/main/java/project/types/EnumNameCombination.java

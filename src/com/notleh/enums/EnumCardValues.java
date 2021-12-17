@@ -15,11 +15,37 @@ public enum EnumCardValues {
     KING("K", 13),
     ACE("A", 14);
 
-    public final String value;
+    public final String strValue;
 
-    EnumCardValues(final String value) {this.value = value;}
+    public final Integer intValue;
 
-    public String getValue(){return value;}
+    EnumCardValues(final String strValue, Integer intValue)
+    {
+        this.strValue = strValue;
+        this.intValue = intValue;
+    }
 
+    public String getStrValue()
+    {
+        return strValue;
+    }
 
+    public Integer getIntValue()
+    {
+        return intValue;
+    }
+
+    public static EnumCardValues valueOfCard(String cardValue)
+    {
+        for (EnumCardValues enumCardValue : values())
+        {
+            if (enumCardValue.strValue.equals(cardValue))
+            {
+                return enumCardValue;
+            }
+        }
+        return null;
+    }
 }
+
+//    Heavily references: https://gitlab.com/dakimar1/poker-hand-sorter/-/blob/master/src/main/java/project/types/EnumValue.java

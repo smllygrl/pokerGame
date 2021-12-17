@@ -1,32 +1,23 @@
-//package com.notleh.services;
-//
-//import java.util.Arrays;
-//import java.util.stream.Stream;
-//
-//public class HandSeperateSort {
+package com.notleh.services;
 
-//    public static int PLAYER_ONE_BEGIN = 0;
-//    public static int PLAYER_ONE_END = 14;
-//    public static int PLAYER_TWO_BEGIN = 15;
-//    public static int PLAYER_TWO_END = 29;
+import com.notleh.entities.Card;
 
-// takes in validUserInput
-//
-//    String playerOneHandString = inputHandString.substring(0, 14);
-//    String playerTwoHandString = inputHandString.substring(15, 28);
-//
-//    String[] playerOneHandStringSplit = playerOneHandString.split("");
-//    String[] playerTwoHandStringSplit = playerTwoHandString.split("");
-//
-//    public static Stream<String> sortHand (String[] playerHandStringSplit)
-//    {
-//        return Arrays.stream(playerHandStringSplit).sorted();
-//    }
-//public Stream<String> playerCardsSortedArr (String playerCards)
-//    {
-//        String[] playerCardsArr = playerCards.split(" ");
-//        Stream<String> sortedPlayerCardsArr = Arrays.stream(playerCardsArr).sorted();
-//        return sortedPlayerCardsArr;
-//    }
-//
-//}
+import java.util.Arrays;
+import java.util.stream.Stream;
+
+public class InputSeperateSort {
+
+    public static Stream<String> createCardArray(String validUserInput, Integer stringStart, Integer stringEnd)
+    {
+        String playerHandString = validUserInput.substring(stringStart, stringEnd;
+        String[] playerCardsArr = playerHandString.split(" ");
+        Stream<String> sortedPlayerCardsArr = Arrays.stream(playerCardsArr).sorted();
+        return sortedPlayerCardsArr;
+    }
+
+
+
+
+
+
+}

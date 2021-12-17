@@ -17,9 +17,7 @@ public class Player {
         this.winCount = winCount;
     }
 
-    public void sayScoreAndWins()
-    {
-        System.out.println(name + "got a score of : " + currentScore + " and has won this many games: " + winCount);
-    }
+    public Player() {
 
+    }
 }

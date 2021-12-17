@@ -1,7 +1,8 @@
 package com.notleh;
 
-//import com.notleh.entities.Player;
+import com.notleh.entities.Player;
 import com.notleh.entities.Card;
+import com.notleh.services.InputSeperateSort;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,7 +11,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+// Services
+import static com.notleh.services.ValidateHand.validateHand;
+import static  com.notleh.services.InputSeperateSort.createCardArray;
+
 public class Main {
+
+    public static int PLAYER_ONE_BEGIN = 0;
+    public static int PLAYER_ONE_END = 14;
+    public static int PLAYER_TWO_BEGIN = 15;
+    public static int PLAYER_TWO_END = 29;
 
     public static void main(String[] args) {
 
@@ -19,22 +29,12 @@ public class Main {
         String inputHandString = input.nextLine();
         validateHand(inputHandString);
 
+        Player playerOne = new Player(playerOne, createCardArray(inputHandString, PLAYER_ONE_BEGIN, PLAYER_ONE_END), 0, 0);
+        Player playerTwo = new Player(playerTwo, createCardArray(inputHandString, PLAYER_TWO_BEGIN, PLAYER_TWO_END), 0, 0);
+
+
+        ;
     }
 
-    public static boolean validateHand(String string) {
-
-//        REGEX must ensure 1 space between each value or card assignment won't work
-
-        Pattern pattern = Pattern.compile("([1-9TKQJA][DHSC]\\s?){10}");
-        Matcher matcher = pattern.matcher(string);
-        boolean validInput = matcher.find();
-        if (validInput) {
-            System.out.println("Valid input, cards being assigned");
-            return true;
-        } else {
-            System.out.println("Invalid input. Please re-read input instructions and try again.");
-            return false;
-        }
-    }
 }
 

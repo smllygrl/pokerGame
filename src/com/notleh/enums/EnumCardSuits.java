@@ -11,4 +11,18 @@ public enum EnumCardSuits {
     EnumCardSuits(final String suit) { this.suit = suit; }
 
     public String getSuit() { return suit; }
+
+    public static EnumCardSuits suitOfCard (String cardSuit)
+    {
+        for (EnumCardSuits enumCardSuit : values())
+        {
+            if (enumCardSuit.suit.equals(cardSuit))
+            {
+                return enumCardSuit;
+            }
+        }
+        return null;
+    }
 }
+
+// Heavily references: https://gitlab.com/dakimar1/poker-hand-sorter/-/blob/master/src/main/java/project/types/EnumSuit.java

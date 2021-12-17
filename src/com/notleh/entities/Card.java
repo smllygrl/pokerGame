@@ -14,25 +14,34 @@ public class Card {
     private EnumCardSuits suit;
     private EnumCardValues value;
 
+// should only take in 2 item string eg index of sorted array
 
-
-    public Card(String inputCardArr)
+    public Card(String cardString)
     {
-        value = EnumCardValues.getValue(inputCardArr.substring(0, 1));
-        suit = EnumCardSuits.getSuit(inputCardArr.substring(1, 2));
+        value = EnumCardValues.valueOfCard(cardString.substring(0, 1));
+        suit = EnumCardSuits.suitOfCard(cardString.substring(1, 2));
     }
 
+    public Card(EnumCardSuits suit, EnumCardValues value)
+    {
+        this.suit = suit;
+        this.value = value;
+    }
 
-//
-//    public String playerCards (String validUserInput, Integer begin, Integer end)
-//    {
-//        return validUserInput.substring(begin, end);
-//    }
-//
-//
+    public EnumCardSuits getSuit() {
+        return suit;
+    }
 
+    public EnumCardValues getValue() {
+        return value;
+    }
 
-
+    public boolean valueInt (EnumCardValues enumCardValues)
+    {
+        return value.getIntValue().equals(enumCardValues.getIntValue());
+    }
 }
+
+// Heavily references: https://gitlab.com/dakimar1/poker-hand-sorter/-/blob/master/src/main/java/project/model/Card.java
 
 
