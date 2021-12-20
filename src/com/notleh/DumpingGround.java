@@ -52,28 +52,28 @@ public class DumpingGround {
         card.set(1, suit);
     }
 
-    public static void buildHand(String validUserInput) {
-
-        String playerOneHandString = validUserInput.substring(0, 14);
-        System.out.println(playerOneHandString);
-        sortHand(playerOneHandString);
-        ArrayList<String> playerOneHand = new ArrayList<String>();
-//        Calls create card function, which creates and fills
-        createCards(playerOneHandString, playerOneHand);
-//        playerOneHand.stream().sorted();
-
-        String playerTwoHandString = validUserInput.substring(15, 29);
-        System.out.println(playerTwoHandString);
-        sortHand(playerTwoHandString);
-        ArrayList<String> playerTwoHand = new ArrayList<String>();
-        createCards(playerTwoHandString, playerTwoHand);
-//        playerTwoHand.stream().sorted();
-
-        System.out.println(playerOneHand);
-        System.out.println(playerTwoHand);
-
-//        allocateHand(playerOneHand, playerTwoHand);
-    }
+//    public static void buildHand(String validUserInput) {
+//
+//        String playerOneHandString = validUserInput.substring(0, 14);
+//        System.out.println(playerOneHandString);
+//        sortHand(playerOneHandString);
+//        ArrayList<String> playerOneHand = new ArrayList<String>();
+////        Calls create card function, which creates and fills
+//        createCards(playerOneHandString, playerOneHand);
+////        playerOneHand.stream().sorted();
+//
+//        String playerTwoHandString = validUserInput.substring(15, 29);
+//        System.out.println(playerTwoHandString);
+//        sortHand(playerTwoHandString);
+//        ArrayList<String> playerTwoHand = new ArrayList<String>();
+//        createCards(playerTwoHandString, playerTwoHand);
+////        playerTwoHand.stream().sorted();
+//
+//        System.out.println(playerOneHand);
+//        System.out.println(playerTwoHand);
+//
+////        allocateHand(playerOneHand, playerTwoHand);
+//    }
 
     public static void testSuite(String testString)
     {

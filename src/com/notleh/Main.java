@@ -1,5 +1,6 @@
 package com.notleh;
 
+import com.notleh.entities.Hand;
 import com.notleh.entities.Player;
 import com.notleh.entities.Card;
 import com.notleh.services.InputSeperateSort;
@@ -12,6 +13,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 // Services
+
 import static com.notleh.services.ValidateHand.validateHand;
 import static  com.notleh.services.InputSeperateSort.createCardArray;
 
@@ -29,8 +31,20 @@ public class Main {
         String inputHandString = input.nextLine();
         validateHand(inputHandString);
 
-        Player playerOne = new Player(playerOne, createCardArray(inputHandString, PLAYER_ONE_BEGIN, PLAYER_ONE_END), 0, 0);
-        Player playerTwo = new Player(playerTwo, createCardArray(inputHandString, PLAYER_TWO_BEGIN, PLAYER_TWO_END), 0, 0);
+        InputSeperateSort playerOneHandArr = new InputSeperateSort(createCardArray(inputHandString, PLAYER_ONE_BEGIN, PLAYER_ONE_END));
+        InputSeperateSort playerTwoHandArr = new InputSeperateSort(createCardArray(inputHandString,PLAYER_TWO_BEGIN, PLAYER_TWO_END));
+
+        Hand playerOneHand = new Hand();
+        Hand playerTwoHand = new Hand();
+
+        playerOneHand.buildHand(playerOneHandArr);
+        playerTwoHand.buildHand(playerTwoHandArr);
+
+        buildHand(playerOneHand);
+        buildHand(playerTwoHand);
+
+        Player playerOne = new Player("playerOne", playerOneHand, 0, 0);
+        Player playerTwo = new Player("playerTwo", playerTwoHand, 0, 0);
 
 
         ;
