@@ -1,22 +1,29 @@
 package com.notleh.services;
 
-import com.notleh.entities.Card;
-
-import java.util.Arrays;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class InputSeperateSort {
 
-    public InputSeperateSort(Stream<String> cardArray) {
+    static int HAND_SIZE = 5;
+
+    public void sortedArr (ArrayList<String> cardArray) {
     }
 
-    public static Stream<String> createCardArray(String validUserInput, Integer stringStart, Integer stringEnd)
+    public static ArrayList<String> createCardArray(String validUserInput, Integer stringStart, Integer stringEnd)
     {
         String playerHandString = validUserInput.substring(stringStart, stringEnd);
-        String[] playerCardsArr = playerHandString.split(" ");
-        Stream<String> sortedPlayerCardsArr = Arrays.stream(playerCardsArr).sorted();
-        System.out.println(sortedPlayerCardsArr);
-        return sortedPlayerCardsArr;
+        String[] playerCardsArrTemp = playerHandString.split(" ");
+
+        ArrayList<String> playerCardsArr = new ArrayList<String>(HAND_SIZE);
+        for (int i = 0; i < HAND_SIZE; i++) {
+            playerCardsArr.add(playerCardsArrTemp[i]);
+        }
+        playerCardsArr.stream().sorted();
+
+        return playerCardsArr;
     }
 
 

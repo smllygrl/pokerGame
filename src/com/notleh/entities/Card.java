@@ -4,6 +4,7 @@ package com.notleh.entities;
 import com.notleh.enums.EnumCardSuits;
 import com.notleh.enums.EnumCardValues;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -16,10 +17,10 @@ public class Card {
 
 // should only take in 2 item string eg index of sorted array
 
-    public Card(String cardString)
+    public Card(ArrayList<String> cardString )
     {
-        value = EnumCardValues.valueOfCard(cardString.substring(0, 1));
-        suit = EnumCardSuits.suitOfCard(cardString.substring(1, 2));
+        value = EnumCardValues.valueOfCard(cardString.get(0));
+        suit = EnumCardSuits.suitOfCard(cardString.get(1));
     }
 
     public Card(EnumCardSuits suit, EnumCardValues value)

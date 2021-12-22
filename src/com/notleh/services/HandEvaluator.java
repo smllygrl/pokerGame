@@ -1,54 +1,54 @@
-package com.notleh.services;
-
-import com.notleh.enums.EnumHandScores;
-
-import java.util.ArrayList;
-
-import static com.notleh.enums.EnumHandScores.*;
-import static com.notleh.enums.EnumCardValues.*;
-import static com.notleh.enums.EnumCardSuits.*;
-
-public class HandEvaluator {
-
-    //    Sorting means I can confidently start with the lowest value in my loops
-
-    public static boolean royalFlushTest(ArrayList<String> hand)
-    {
-        if (cardOne.getSuit == cardFive.getSuit)
-        {
-            if (cardOne.value == "T" && cardFive.value == "A")
-                player.currentScore = ROYAL_FLUSH;
-            return true;
-        }
-        return false;
-    }
-
-    public static int pairTest(ArrayList<String> hand)
-    {
-        int count = 0;
-
-        for (int i = 0; i < HAND_SIZE; i++) {
-            for (int j = 0; j < 2; j++) {
-                if (ArrayList[i][j] == ArrayList[i+1][j+1])
-                {
-                    count = count + 1;
-                }
-            }
-        }
-
-        if (count == 1)
-        {
-            player.currentScore = PAIR;
-        }
-
-        if (count == 2)
-        {
-            player.currentScore = TWO_PAIRS;
-        }
-
-        return count;
-    }
-    
+//package com.notleh.services;
+//
+//import com.notleh.enums.EnumHandScores;
+//
+//import java.util.ArrayList;
+//
+//import static com.notleh.enums.EnumHandScores.*;
+//import static com.notleh.enums.EnumCardValues.*;
+//import static com.notleh.enums.EnumCardSuits.*;
+//
+//public class HandEvaluator {
+//
+//    //    Sorting means I can confidently start with the lowest value in my loops
+//
+//    public static boolean royalFlushTest(ArrayList<String> hand)
+//    {
+//        if (cardOne.getSuit == cardFive.getSuit)
+//        {
+//            if (cardOne.value == "T" && cardFive.value == "A")
+//                player.currentScore = ROYAL_FLUSH;
+//            return true;
+//        }
+//        return false;
+//    }
+//
+//    public static int pairTest(ArrayList<String> hand)
+//    {
+//        int count = 0;
+//
+//        for (int i = 0; i < HAND_SIZE; i++) {
+//            for (int j = 0; j < 2; j++) {
+//                if (ArrayList[i][j] == ArrayList[i+1][j+1])
+//                {
+//                    count = count + 1;
+//                }
+//            }
+//        }
+//
+//        if (count == 1)
+//        {
+//            player.currentScore = PAIR;
+//        }
+//
+//        if (count == 2)
+//        {
+//            player.currentScore = TWO_PAIRS;
+//        }
+//
+//        return count;
+//    }
+//
 
 // if suits all match
 // test:
@@ -117,5 +117,5 @@ public class HandEvaluator {
 //        playerTwoCount = playerTwoCount + 1;
 //    }
 //    
-
-}
+//
+//}

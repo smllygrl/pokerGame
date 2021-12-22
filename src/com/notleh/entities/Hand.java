@@ -1,29 +1,21 @@
 package com.notleh.entities;
 
-import com.notleh.services.InputSeperateSort;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Hand {
 
     static int HAND_SIZE = 5;
 
-    public ArrayList<Card> cardsInHand = null;
+    public ArrayList<Card> cardsInHand = new ArrayList<>(HAND_SIZE);
 
-    public void buildHand(InputSeperateSort cardArrValue)
+    public void buildHand(ArrayList<String> cardArrValue)
     {
         System.out.println("Building hand");
         for (int i = 0; i < HAND_SIZE; i++) {
             cardsInHand.add(new Card(cardArrValue));
         }
-        System.out.println(cardsInHand);
-
-    }
-
-    public List<Card> getHand()
-    {
-        return cardsInHand;
     }
 
 }

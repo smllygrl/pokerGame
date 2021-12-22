@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 // Services
 
 import static com.notleh.services.ValidateHand.validateHand;
-import static  com.notleh.services.InputSeperateSort.createCardArray;
+import static com.notleh.services.InputSeperateSort.createCardArray;
 
 public class Main {
 
@@ -31,23 +31,19 @@ public class Main {
         String inputHandString = input.nextLine();
         validateHand(inputHandString);
 
-        InputSeperateSort playerOneHandArr = new InputSeperateSort(createCardArray(inputHandString, PLAYER_ONE_BEGIN, PLAYER_ONE_END));
-        InputSeperateSort playerTwoHandArr = new InputSeperateSort(createCardArray(inputHandString,PLAYER_TWO_BEGIN, PLAYER_TWO_END));
+        ArrayList<String> playerOneHandArr = createCardArray(inputHandString, PLAYER_ONE_BEGIN, PLAYER_ONE_END);
+        ArrayList<String> playerTwoHandArr = createCardArray(inputHandString, PLAYER_TWO_BEGIN, PLAYER_TWO_END);
 
         Hand playerOneHand = new Hand();
         Hand playerTwoHand = new Hand();
 
         playerOneHand.buildHand(playerOneHandArr);
+        System.out.printf(String.valueOf(playerOneHand.cardsInHand));
         playerTwoHand.buildHand(playerTwoHandArr);
-
-        buildHand(playerOneHand);
-        buildHand(playerTwoHand);
+        System.out.printf(String.valueOf(playerOneHand.cardsInHand));
 
         Player playerOne = new Player("playerOne", playerOneHand, 0, 0);
         Player playerTwo = new Player("playerTwo", playerTwoHand, 0, 0);
-
-
-        ;
     }
 
 }
