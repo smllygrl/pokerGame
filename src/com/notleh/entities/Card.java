@@ -12,8 +12,8 @@ public class Card {
 
 //    Card class should only have suit and value enum
 
-    private EnumCardSuits suit;
-    private EnumCardValues value;
+    public EnumCardSuits suit;
+    public EnumCardValues value;
 
 // should only take in 2 item string eg index of sorted array
 
@@ -41,6 +41,13 @@ public class Card {
     {
         return value.getIntValue().equals(enumCardValues.getIntValue());
     }
+
+    @Override
+    public String toString()
+    {
+        return Card.this.value + "" + Card.this.suit;
+    }
+
 }
 
 // Heavily references: https://gitlab.com/dakimar1/poker-hand-sorter/-/blob/master/src/main/java/project/model/Card.java

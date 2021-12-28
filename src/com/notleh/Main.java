@@ -38,9 +38,9 @@ public class Main {
         Hand playerTwoHand = new Hand();
 
         playerOneHand.buildHand(playerOneHandArr);
-        System.out.printf(String.valueOf(playerOneHand.cardsInHand));
+        System.out.printf(String.valueOf(playerOneHand.cardsInHand.toString()));
         playerTwoHand.buildHand(playerTwoHandArr);
-        System.out.printf(String.valueOf(playerOneHand.cardsInHand));
+        System.out.printf(playerTwoHand.cardsInHand.toString());
 
         Player playerOne = new Player("playerOne", playerOneHand, 0, 0);
         Player playerTwo = new Player("playerTwo", playerTwoHand, 0, 0);
