@@ -1,12 +1,9 @@
 package com.notleh.services;
 
-import com.notleh.entities.Card;
 import com.notleh.entities.Hand;
 import com.notleh.entities.Player;
 import com.notleh.enums.EnumCardSuits;
-import com.notleh.enums.EnumHandScores;
-
-import java.util.ArrayList;
+import com.notleh.enums.EnumCardValues;
 
 import static com.notleh.enums.EnumHandScores.*;
 
@@ -31,7 +28,7 @@ public class HandEvaluator {
                             for (int i = 0; i < HAND_SIZE; i++)
                             {
                                 EnumCardSuits suitToCompare = currentHand.cardsInHand.get(i).getSuit();
-                                for (int j = 1; j < HAND_SIZE - 1; j++) {
+                                for (int j = i + 1; j < HAND_SIZE - 1; j++) {
                                     if (currentHand.cardsInHand.get(j).getSuit() == suitToCompare)
                                     {
                                         continue;
@@ -46,9 +43,45 @@ public class HandEvaluator {
         }
     }
 
-    public static int pairTest(Player currentPlayer, ArrayList<Card> currentHand)
+    public static void pairTest(Player currentPlayer, Hand currentHand)
     {
+        int pairCount = 0;
+        int kindCount = 0;
 
+        for (int i = 0; i < HAND_SIZE; i++) {
+            EnumCardValues valueToCompare = currentHand.cardsInHand.get(i).getValue();
+            for (int j = i + 1; j < HAND_SIZE - 1; j++) {
+                if (currentHand.cardsInHand.get(j).getValue() == valueToCompare)
+                {
+                    pairCount ++;
+                    kindCount ++;
+                    continue;
+                }
+            }
+
+        }
+
+        if (pairCount == 1)
+        {
+            currentPlayer.setCurrentScore(PAIR);
+        }
+
+        if (pairCount == 2)
+        {
+            currentPlayer.setCurrentScore(TWO_PAIRS);
+        }
+
+        if (kindCount == 3)
+        {
+            currentPlayer.setCurrentScore(THREE_OF_KIND);
+        }
+
+        if (kindCount == 4)
+        {
+            currentPlayer.setCurrentScore(FOUR_OF_KIND);
+        }
+
+        return;
     }
 
     //    8: Four of a kind - Four cards with the same value
