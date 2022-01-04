@@ -15,15 +15,15 @@ public class HandEvaluator {
 
     public static void royalFlushTest(Player currentPlayer, Hand currentHand)
     {
-        if(currentHand.cardsInHand.get(0).getValue().getIntValue() == 14)
+        if(currentHand.cardsInHand.get(0).getValue().getIntValue() == 10)
         {
-            if(currentHand.cardsInHand.get(1).getValue().getIntValue() == 13)
+            if(currentHand.cardsInHand.get(1).getValue().getIntValue() == 11)
             {
                 if(currentHand.cardsInHand.get(2).getValue().getIntValue() == 12)
                 {
-                    if(currentHand.cardsInHand.get(3).getValue().getIntValue() == 11)
+                    if(currentHand.cardsInHand.get(3).getValue().getIntValue() == 13)
                     {
-                        if(currentHand.cardsInHand.get(4).getValue().getIntValue() == 10)
+                        if(currentHand.cardsInHand.get(4).getValue().getIntValue() == 14)
                         {
                             for (int i = 0; i < HAND_SIZE; i++)
                             {
