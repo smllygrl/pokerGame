@@ -22,5 +22,9 @@ public class Player {
     public void setCurrentScore(EnumHandScores currentScore) {
         this.currentScore = currentScore;
     }
+
+    public EnumHandScores getCurrentScore() {
+        return currentScore;
+    }
 }
 

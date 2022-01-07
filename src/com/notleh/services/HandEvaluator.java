@@ -13,116 +13,139 @@ public class HandEvaluator {
 
     //    Sorting means I can confidently start with the lowest value in my loops
 
-    public static void royalFlushTest(Player currentPlayer, Hand currentHand)
-    {
-        if(currentHand.cardsInHand.get(0).getValue().getIntValue() == 10)
-        {
-            if(currentHand.cardsInHand.get(1).getValue().getIntValue() == 11)
-            {
-                if(currentHand.cardsInHand.get(2).getValue().getIntValue() == 12)
-                {
-                    if(currentHand.cardsInHand.get(3).getValue().getIntValue() == 13)
-                    {
-                        if(currentHand.cardsInHand.get(4).getValue().getIntValue() == 14)
-                        {
-                            for (int i = 0; i < HAND_SIZE; i++)
-                            {
-                                EnumCardSuits suitToCompare = currentHand.cardsInHand.get(i).getSuit();
-                                for (int j = i + 1; j < HAND_SIZE - 1; j++) {
-                                    if (currentHand.cardsInHand.get(j).getSuit() == suitToCompare)
-                                    {
-                                        continue;
-                                    } else currentPlayer.setCurrentScore(STRAIGHT);
-                                }
-                                currentPlayer.setCurrentScore(ROYAL_FLUSH);
-                            }
-                        }
-                    }
-                }
+    public static void royalFlushTest(Player currentPlayer, Hand currentHand) {
+        if (currentHand.cardsInHand.get(0).getValue().getIntValue() == 10) {
+            boolean handHasSameValues = false;
+
+//        starts at 1 as 0 is 10
+            for (int i = 1; i < HAND_SIZE; i++) {
+                if (currentHand.cardsInHand.get(i).getValue().getIntValue() == 10 + i) {
+                    handHasSameValues = true;
+                    continue;
+                } else handHasSameValues = false;
             }
+
+            if (handHasSameValues) {
+                EnumCardSuits suitToCompare = currentHand.cardsInHand.get(0).getSuit();
+                for (int j = 1; j < HAND_SIZE - 1; j++) {
+                    if (currentHand.cardsInHand.get(j).getSuit() == suitToCompare) {
+                        continue;
+                    } else currentPlayer.setCurrentScore(STRAIGHT);
+                }
+                if (currentPlayer.getCurrentScore() != STRAIGHT)
+                    currentPlayer.setCurrentScore(ROYAL_FLUSH);
+            } else return;
         }
     }
 
-    public static void pairTest(Player currentPlayer, Hand currentHand)
+    public static void valueTest(Player currentPlayer, Hand currentHand)
     {
-        int pairCount = 0;
-        int kindCount = 0;
+        int valueArray[] = new int[HAND_SIZE];
 
         for (int i = 0; i < HAND_SIZE; i++) {
             EnumCardValues valueToCompare = currentHand.cardsInHand.get(i).getValue();
+            int sameValue = valueArray[i];
             for (int j = i + 1; j < HAND_SIZE - 1; j++) {
                 if (currentHand.cardsInHand.get(j).getValue() == valueToCompare)
                 {
-                    pairCount ++;
-                    kindCount ++;
-                    continue;
+                    sameValue ++;
                 }
             }
-
         }
 
-        if (pairCount == 1)
+        int countOfTwo = 0;
+        int countOfThree = 0;
+        int countOfFour = 0;
+
+//        Cases denote the number of cards the same as the one it was compared to, THUS case number + 1 = total occurence of card
+        for (int i = 0; i < valueArray.length; i++) {
+            switch (valueArray[i]) {
+                case 1:
+                    countOfTwo++;
+                    break;
+                case 2:
+                    countOfThree++;
+                    break;
+                case 3:
+                    countOfFour++;
+                    break;
+            }
+        }
+
+        if (countOfFour == 1)
         {
-            currentPlayer.setCurrentScore(PAIR);
+            currentPlayer.setCurrentScore(FOUR_OF_KIND);
+            return;
         }
 
-        if (pairCount == 2)
+        if (countOfThree == 1)
+        {
+            if (countOfTwo == 1)
+            {
+                currentPlayer.setCurrentScore(FULL_HOUSE);
+                return;
+            }
+        } currentPlayer.setCurrentScore(THREE_OF_KIND);
+
+
+        if (countOfTwo == 2)
         {
             currentPlayer.setCurrentScore(TWO_PAIRS);
         }
 
-        if (kindCount == 3)
+        if (countOfTwo == 1)
         {
-            currentPlayer.setCurrentScore(THREE_OF_KIND);
-        }
-
-        if (kindCount == 4)
-        {
-            currentPlayer.setCurrentScore(FOUR_OF_KIND);
+            currentPlayer.setCurrentScore(PAIR);
         }
 
         return;
     }
 
-    //    8: Four of a kind - Four cards with the same value
-//        FOUR_OF_KIND
-//    4: Three of a kind - Three cards of the same value
-//        THREE_OF_KIND
-//
-//    3: Two Pairs - Two different pairs
-//        TWO_PAIRS
-//
-//    2: Pair - Two cards of the same value
-//        PAIR
+    public static void flushTest(Player currentPlayer, Hand currentHand)
+    {
+//        Because we start with a single suit to compare the others to...
+        int suitCount = 1;
+        for (int i = 0; i < HAND_SIZE; i++)
+        {
+            EnumCardSuits suitToCompare = currentHand.cardsInHand.get(i).getSuit();
+            for (int j = i + 1; j < HAND_SIZE - 1; j++) {
+                if (currentHand.cardsInHand.get(j).getSuit() == suitToCompare)
+                {
+                    suitCount++;
+                }
+            }
+            if (suitCount == HAND_SIZE)
+                currentPlayer.setCurrentScore(FLUSH);
+        }
+    }
 
+    public static void straightTest(Player currentPlayer, Hand currentHand)
+    {
+        int startValue = currentHand.cardsInHand.get(0).getValue().getIntValue();
+//        Starting at 1 because 0 is the startValue which we compare all others
+        for (int i = 1; i < HAND_SIZE; i++) {
+            if(currentHand.cardsInHand.get(i).getValue().getIntValue() == startValue + i)
+            {
+                continue;
+            } else return;
+        }
+        currentPlayer.setCurrentScore(STRAIGHT);
+    }
 
-//    10: Royal Flush - T, J, Q, K, & A in the same suit
-//        ROYAL_FLUSH
-//
-//    9: Straight Flush - All five cards in consecutive value order, in the same suit
-//        STRAIGHT_FLUSH
-//
-//    6: Flush - All five cards having the same suit
-//        FLUSH
-//
-
-//
-//    7: Full House - Three of a kind and a pair
-//        FULL_HOUSE
-//
-
-//
-//    5: Straight - All 5 cards in consecutive order
-//        STRAIGHT
-//
-//    1: High Card - Highest value card
-//        HIGH_CARD
-//
-//    5: Straight - All 5 cards in consecutive order
-//        STRAIGHT
-//
-//    1: High Card - Highest value card
-//        HIGH_CARD
-//
+    public static void straightFlushTest(Player currentPlayer, Hand currentHand)
+    {
+        int startValue = currentHand.cardsInHand.get(0).getValue().getIntValue();
+        EnumCardSuits suitToCompare = currentHand.cardsInHand.get(0).getSuit();
+//        Starting at 1 because 0 is the startValue which we compare all others
+        for (int i = 1; i < HAND_SIZE; i++) {
+            if(currentHand.cardsInHand.get(i).getValue().getIntValue() == startValue + i)
+            {
+                if (currentHand.cardsInHand.get(i).getSuit() == suitToCompare) {
+                    continue;
+                } else return;
+            } else return;
+        }
+        currentPlayer.setCurrentScore(STRAIGHT_FLUSH);
+    }
 
 }
