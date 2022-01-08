@@ -17,7 +17,6 @@ public class InputSeperateSort {
     {
         String playerHandString = validUserInput.substring(stringStart, stringEnd);
         String[] playerCardsArrTemp = playerHandString.split(" ");
-        System.out.println(Arrays.toString(playerCardsArrTemp));
 
         ArrayList<String> playerCardsArr = new ArrayList<String>(HAND_SIZE);
         for (int i = 0; i < HAND_SIZE; i++) {

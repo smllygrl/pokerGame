@@ -3,6 +3,8 @@ package com.notleh;
 import com.notleh.entities.Hand;
 import com.notleh.entities.Player;
 import com.notleh.entities.Card;
+import com.notleh.enums.EnumHandScores;
+import com.notleh.services.Game;
 import com.notleh.services.InputSeperateSort;
 
 import java.util.ArrayList;
@@ -14,6 +16,8 @@ import java.util.stream.Stream;
 
 // Services
 
+import static com.notleh.enums.EnumHandScores.START_SCORE;
+import static com.notleh.services.Game.game;
 import static com.notleh.services.ValidateHand.validateHand;
 import static com.notleh.services.InputSeperateSort.createCardArray;
 
@@ -38,12 +42,13 @@ public class Main {
         Hand playerTwoHand = new Hand();
 
         playerOneHand.buildHand(playerOneHandArr);
-        System.out.printf(String.valueOf(playerOneHand.cardsInHand.toString()));
         playerTwoHand.buildHand(playerTwoHandArr);
-        System.out.printf(playerTwoHand.cardsInHand.toString());
 
-        Player playerOne = new Player("playerOne", playerOneHand, 0, 0);
-        Player playerTwo = new Player("playerTwo", playerTwoHand, 0, 0);
+        Player playerOne = new Player("playerOne", playerOneHand, START_SCORE, 0);
+        Player playerTwo = new Player("playerTwo", playerTwoHand, START_SCORE, 0);
+
+        Game game = new Game();
+        game(playerOne, playerOneHand, playerTwo, playerTwoHand);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.notleh.enums;
 
 public enum EnumHandScores {
+    START_SCORE(0),
     LOST_DRAW(0),
     HIGH_CARD(1),
     PAIR(2),

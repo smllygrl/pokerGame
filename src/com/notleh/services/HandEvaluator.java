@@ -14,12 +14,13 @@ public class HandEvaluator {
     //    Sorting means I can confidently start with the lowest value in my loops
 
     public static void royalFlushTest(Player currentPlayer, Hand currentHand) {
-        if (currentHand.cardsInHand.get(0).getValue().getIntValue() == 10) {
+
+        if (currentHand.cardsInHand.get(0).getValue().getIntValue().intValue() == 10) {
             boolean handHasSameValues = false;
 
 //        starts at 1 as 0 is 10
             for (int i = 1; i < HAND_SIZE; i++) {
-                if (currentHand.cardsInHand.get(i).getValue().getIntValue() == 10 + i) {
+                if (currentHand.cardsInHand.get(i).getValue().getIntValue().intValue() == (10 + i)) {
                     handHasSameValues = true;
                     continue;
                 } else handHasSameValues = false;
@@ -36,6 +37,60 @@ public class HandEvaluator {
                     currentPlayer.setCurrentScore(ROYAL_FLUSH);
             } else return;
         }
+    }
+
+    public static void straightFlushTest(Player currentPlayer, Hand currentHand)
+    {
+
+        int startValue = currentHand.cardsInHand.get(0).getValue().getIntValue();
+        EnumCardSuits suitToCompare = currentHand.cardsInHand.get(0).getSuit();
+//        Starting at 1 because 0 is the startValue which we compare all others
+        for (int i = 1; i < HAND_SIZE; i++) {
+            if(currentHand.cardsInHand.get(i).getValue().getIntValue() == startValue + i)
+            {
+                if (currentHand.cardsInHand.get(i).getSuit() == suitToCompare) {
+                    continue;
+                } else return;
+            } else return;
+        }
+        currentPlayer.setCurrentScore(STRAIGHT_FLUSH);
+    }
+
+
+    public static void flushTest(Player currentPlayer, Hand currentHand)
+    {
+        boolean isFlush = false;
+//        Because we start with a single suit to compare the others to...
+        int suitCount = 1;
+        for (int i = 0; i < HAND_SIZE; i++)
+        {
+            EnumCardSuits suitToCompare = currentHand.cardsInHand.get(i).getSuit();
+            for (int j = i + 1; j < HAND_SIZE - 1; j++) {
+                if (currentHand.cardsInHand.get(j).getSuit() == suitToCompare)
+                {
+                    suitCount++;
+                }
+            }
+            if (suitCount == HAND_SIZE)
+                currentPlayer.setCurrentScore(FLUSH);
+                isFlush = true;
+        }
+    }
+
+    public static void straightTest(Player currentPlayer, Hand currentHand)
+    {
+        boolean isStraight = false;
+
+        int startValue = currentHand.cardsInHand.get(0).getValue().getIntValue();
+//        Starting at 1 because 0 is the startValue which we compare all others
+        for (int i = 1; i < HAND_SIZE; i++) {
+            if(currentHand.cardsInHand.get(i).getValue().getIntValue() == startValue + i)
+            {
+                continue;
+            } else return;
+        }
+        currentPlayer.setCurrentScore(STRAIGHT);
+        isStraight = true;
     }
 
     public static void valueTest(Player currentPlayer, Hand currentHand)
@@ -101,51 +156,6 @@ public class HandEvaluator {
         return;
     }
 
-    public static void flushTest(Player currentPlayer, Hand currentHand)
-    {
-//        Because we start with a single suit to compare the others to...
-        int suitCount = 1;
-        for (int i = 0; i < HAND_SIZE; i++)
-        {
-            EnumCardSuits suitToCompare = currentHand.cardsInHand.get(i).getSuit();
-            for (int j = i + 1; j < HAND_SIZE - 1; j++) {
-                if (currentHand.cardsInHand.get(j).getSuit() == suitToCompare)
-                {
-                    suitCount++;
-                }
-            }
-            if (suitCount == HAND_SIZE)
-                currentPlayer.setCurrentScore(FLUSH);
-        }
-    }
 
-    public static void straightTest(Player currentPlayer, Hand currentHand)
-    {
-        int startValue = currentHand.cardsInHand.get(0).getValue().getIntValue();
-//        Starting at 1 because 0 is the startValue which we compare all others
-        for (int i = 1; i < HAND_SIZE; i++) {
-            if(currentHand.cardsInHand.get(i).getValue().getIntValue() == startValue + i)
-            {
-                continue;
-            } else return;
-        }
-        currentPlayer.setCurrentScore(STRAIGHT);
-    }
-
-    public static void straightFlushTest(Player currentPlayer, Hand currentHand)
-    {
-        int startValue = currentHand.cardsInHand.get(0).getValue().getIntValue();
-        EnumCardSuits suitToCompare = currentHand.cardsInHand.get(0).getSuit();
-//        Starting at 1 because 0 is the startValue which we compare all others
-        for (int i = 1; i < HAND_SIZE; i++) {
-            if(currentHand.cardsInHand.get(i).getValue().getIntValue() == startValue + i)
-            {
-                if (currentHand.cardsInHand.get(i).getSuit() == suitToCompare) {
-                    continue;
-                } else return;
-            } else return;
-        }
-        currentPlayer.setCurrentScore(STRAIGHT_FLUSH);
-    }
 
 }
