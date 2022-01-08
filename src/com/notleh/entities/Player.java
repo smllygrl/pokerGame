@@ -26,5 +26,10 @@ public class Player {
     public EnumHandScores getCurrentScore() {
         return currentScore;
     }
+
+    public void setWinCount(Integer winCount)
+    {
+        this.winCount = winCount;
+    }
 }
 

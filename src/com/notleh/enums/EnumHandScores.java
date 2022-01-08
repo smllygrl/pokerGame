@@ -1,6 +1,7 @@
 package com.notleh.enums;
 
 public enum EnumHandScores {
+    LOST_DRAW(0),
     HIGH_CARD(1),
     PAIR(2),
     TWO_PAIRS(3),
@@ -23,6 +24,7 @@ public enum EnumHandScores {
     {
         return score;
     }
+
 }
 
- Heavily references: https://gitlab.com/dakimar1/poker-hand-sorter/-/blob/master/src/main/java/project/types/EnumNameCombination.java
+// Heavily references: https://gitlab.com/dakimar1/poker-hand-sorter/-/blob/master/src/main/java/project/types/EnumNameCombination.java
