@@ -16,17 +16,17 @@ public class HandEvaluator {
     public static void royalFlushTest(Player currentPlayer, Hand currentHand) {
 
         if (currentHand.cardsInHand.get(0).getValue().getIntValue().intValue() == 10) {
-            boolean handHasSameValues = false;
+            boolean ascendingOrder = false;
 
 //        starts at 1 as 0 is 10
             for (int i = 1; i < HAND_SIZE; i++) {
                 if (currentHand.cardsInHand.get(i).getValue().getIntValue().intValue() == (10 + i)) {
-                    handHasSameValues = true;
+                    ascendingOrder = true;
                     continue;
-                } else handHasSameValues = false;
+                } else ascendingOrder = false;
             }
 
-            if (handHasSameValues) {
+            if (ascendingOrder) {
                 EnumCardSuits suitToCompare = currentHand.cardsInHand.get(0).getSuit();
                 for (int j = 1; j < HAND_SIZE - 1; j++) {
                     if (currentHand.cardsInHand.get(j).getSuit() == suitToCompare) {
@@ -41,7 +41,6 @@ public class HandEvaluator {
 
     public static void straightFlushTest(Player currentPlayer, Hand currentHand)
     {
-
         int startValue = currentHand.cardsInHand.get(0).getValue().getIntValue();
         EnumCardSuits suitToCompare = currentHand.cardsInHand.get(0).getSuit();
 //        Starting at 1 because 0 is the startValue which we compare all others
@@ -59,7 +58,6 @@ public class HandEvaluator {
 
     public static void flushTest(Player currentPlayer, Hand currentHand)
     {
-        boolean isFlush = false;
 //        Because we start with a single suit to compare the others to...
         int suitCount = 1;
         for (int i = 0; i < HAND_SIZE; i++)
@@ -73,14 +71,11 @@ public class HandEvaluator {
             }
             if (suitCount == HAND_SIZE)
                 currentPlayer.setCurrentScore(FLUSH);
-                isFlush = true;
         }
     }
 
     public static void straightTest(Player currentPlayer, Hand currentHand)
     {
-        boolean isStraight = false;
-
         int startValue = currentHand.cardsInHand.get(0).getValue().getIntValue();
 //        Starting at 1 because 0 is the startValue which we compare all others
         for (int i = 1; i < HAND_SIZE; i++) {
@@ -90,7 +85,6 @@ public class HandEvaluator {
             } else return;
         }
         currentPlayer.setCurrentScore(STRAIGHT);
-        isStraight = true;
     }
 
     public static void valueTest(Player currentPlayer, Hand currentHand)

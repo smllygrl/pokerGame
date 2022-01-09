@@ -29,11 +29,9 @@ public class Game {
                 if(player.getCurrentScore() != EnumHandScores.FLUSH)
                 {
                     straightTest(player, playerHand);
+                    if(player.getCurrentScore() != STRAIGHT)
                     {
-                        if(player.getCurrentScore() != STRAIGHT)
-                        {
-                            valueTest(player, playerHand);
-                        }
+                        valueTest(player, playerHand);
                     }
                 }
             }
