@@ -23,7 +23,7 @@ public class HandEvaluator {
                 if (currentHand.cardsInHand.get(i).getValue().getIntValue().intValue() == (10 + i)) {
                     ascendingOrder = true;
                     continue;
-                } else ascendingOrder = false;
+                } else return;
             }
 
             if (ascendingOrder) {
@@ -36,7 +36,7 @@ public class HandEvaluator {
                 if (currentPlayer.getCurrentScore() != STRAIGHT)
                     currentPlayer.setCurrentScore(ROYAL_FLUSH);
             } else return;
-        }
+        } else return;
     }
 
     public static void straightFlushTest(Player currentPlayer, Hand currentHand)
