@@ -15,12 +15,12 @@ public class HandEvaluator {
 
     public static void royalFlushTest(Player currentPlayer, Hand currentHand) {
 
-        if (currentHand.cardsInHand.get(0).getValue().getIntValue().intValue() == 10) {
+        if (currentHand.cardsInHand.get(0).getValue().getIntValue() == 10) {
             boolean ascendingOrder = false;
 
 //        starts at 1 as 0 is 10
             for (int i = 1; i < HAND_SIZE; i++) {
-                if (currentHand.cardsInHand.get(i).getValue().getIntValue().intValue() == (10 + i)) {
+                if (currentHand.cardsInHand.get(i).getValue().getIntValue() == (10 + i)) {
                     ascendingOrder = true;
                     continue;
                 } else return;
@@ -87,17 +87,15 @@ public class HandEvaluator {
         currentPlayer.setCurrentScore(STRAIGHT);
     }
 
-    public static void valueTest(Player currentPlayer, Hand currentHand)
-    {
+    public static void valueTest(Player currentPlayer, Hand currentHand) {
         int valueArray[] = new int[HAND_SIZE];
 
         for (int i = 0; i < HAND_SIZE; i++) {
             EnumCardValues valueToCompare = currentHand.cardsInHand.get(i).getValue();
             int sameValue = valueArray[i];
             for (int j = i + 1; j < HAND_SIZE - 1; j++) {
-                if (currentHand.cardsInHand.get(j).getValue() == valueToCompare)
-                {
-                    sameValue ++;
+                if (currentHand.cardsInHand.get(j).getValue() == valueToCompare) {
+                    sameValue++;
                 }
             }
         }
@@ -109,6 +107,8 @@ public class HandEvaluator {
 //        Cases denote the number of cards the same as the one it was compared to, THUS case number + 1 = total occurence of card
         for (int i = 0; i < valueArray.length; i++) {
             switch (valueArray[i]) {
+                case 0:
+                    break;
                 case 1:
                     countOfTwo++;
                     break;
@@ -121,35 +121,17 @@ public class HandEvaluator {
             }
         }
 
-        if (countOfFour == 1)
-        {
+        if (countOfFour == 1) {
             currentPlayer.setCurrentScore(FOUR_OF_KIND);
-            return;
-        }
-
-        if (countOfThree == 1)
-        {
-            if (countOfTwo == 1)
-            {
+        } else if (countOfThree == 1) {
+            if (countOfTwo == 1) {
                 currentPlayer.setCurrentScore(FULL_HOUSE);
-                return;
-            }
-        } currentPlayer.setCurrentScore(THREE_OF_KIND);
-
-
-        if (countOfTwo == 2)
-        {
+            } else currentPlayer.setCurrentScore(THREE_OF_KIND);
+        } else if (countOfTwo == 2) {
             currentPlayer.setCurrentScore(TWO_PAIRS);
-        }
-
-        if (countOfTwo == 1)
-        {
+        } else if (countOfTwo == 1) {
             currentPlayer.setCurrentScore(PAIR);
         }
-
-        return;
     }
-
-
 
 }

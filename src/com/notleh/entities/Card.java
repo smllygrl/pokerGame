@@ -37,11 +37,6 @@ public class Card {
         return value;
     }
 
-    public boolean valueInt (EnumCardValues enumCardValues)
-    {
-        return value.getIntValue().equals(enumCardValues.getIntValue());
-    }
-
     @Override
     public String toString()
     {
