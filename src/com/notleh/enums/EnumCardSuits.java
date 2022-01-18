@@ -10,6 +10,7 @@ public enum EnumCardSuits {
 
     EnumCardSuits(final String suit) { this.suit = suit; }
 
+
     public String getSuit() { return suit; }
 
     public static EnumCardSuits suitOfCard (String cardSuit)

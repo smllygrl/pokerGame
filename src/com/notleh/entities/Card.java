@@ -17,10 +17,10 @@ public class Card {
 
 // should only take in 2 item string eg index of sorted array
 
-    public Card(ArrayList<String> cardString )
+    public Card(String cardString)
     {
-        value = EnumCardValues.valueOfCard(cardString.get(0));
-        suit = EnumCardSuits.suitOfCard(cardString.get(1));
+        value = EnumCardValues.valueOfCard(cardString.substring(0, 1));
+        suit = EnumCardSuits.suitOfCard(cardString.substring(1));
     }
 
     public Card(EnumCardSuits suit, EnumCardValues value)

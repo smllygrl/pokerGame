@@ -12,10 +12,15 @@ public class Hand {
 
     public void buildHand(ArrayList<String> cardArrValue)
     {
-        System.out.println("Building hand");
         for (int i = 0; i < HAND_SIZE; i++) {
-            cardsInHand.add(new Card(cardArrValue));
+            cardsInHand.add(new Card(cardArrValue.get(i)));
         }
+    }
+
+    @Override
+    public String toString()
+    {
+        return cardsInHand.toString();
     }
 
 }

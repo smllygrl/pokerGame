@@ -39,11 +39,14 @@ public class Main {
         ArrayList<String> playerTwoHandArr = createCardArray(inputHandString, PLAYER_TWO_BEGIN, PLAYER_TWO_END);
 
         Hand playerOneHand = new Hand();
+
         Hand playerTwoHand = new Hand();
+
 
         playerOneHand.buildHand(playerOneHandArr);
         playerTwoHand.buildHand(playerTwoHandArr);
-
+        System.out.println(playerOneHand.cardsInHand.toString());
+        System.out.println(playerTwoHand.cardsInHand.toString());
         Player playerOne = new Player("playerOne", playerOneHand, START_SCORE, 0);
         Player playerTwo = new Player("playerTwo", playerTwoHand, START_SCORE, 0);
 
