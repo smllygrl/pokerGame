@@ -11,6 +11,7 @@ public class SolveDraw {
 
     public static void solveDraw(Player playerOne, Player playerTwo, Hand playerOneHand, Hand playerTwoHand)
     {
+        System.out.println("It is a draw");
 //        As the hand is sorted, the final card in the hand has the highest value
         int playerOneHighCard = playerOneHand.cardsInHand.get(4).getValue().intValue;
         int playerTwoHighCard = playerTwoHand.cardsInHand.get(4).getValue().intValue;

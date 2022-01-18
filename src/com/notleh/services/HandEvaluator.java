@@ -14,6 +14,7 @@ public class HandEvaluator {
     //    Sorting means I can confidently start with the lowest value in my loops
 
     public static void royalFlushTest(Player currentPlayer, Hand currentHand) {
+        System.out.println("Royal flush test: " + currentPlayer);
 
         if (currentHand.cardsInHand.get(0).getValue().getIntValue() == 10) {
             boolean ascendingOrder = false;
@@ -41,6 +42,7 @@ public class HandEvaluator {
 
     public static void straightFlushTest(Player currentPlayer, Hand currentHand)
     {
+        System.out.println("Straight flush test: " + currentPlayer);
         int startValue = currentHand.cardsInHand.get(0).getValue().getIntValue();
         EnumCardSuits suitToCompare = currentHand.cardsInHand.get(0).getSuit();
 //        Starting at 1 because 0 is the startValue which we compare all others
@@ -58,6 +60,7 @@ public class HandEvaluator {
 
     public static void flushTest(Player currentPlayer, Hand currentHand)
     {
+        System.out.println("Flush test: " + currentPlayer);
 //        Because we start with a single suit to compare the others to...
         int suitCount = 1;
         for (int i = 0; i < HAND_SIZE; i++)
@@ -76,6 +79,7 @@ public class HandEvaluator {
 
     public static void straightTest(Player currentPlayer, Hand currentHand)
     {
+        System.out.println("Straight test: " + currentPlayer);
         int startValue = currentHand.cardsInHand.get(0).getValue().getIntValue();
 //        Starting at 1 because 0 is the startValue which we compare all others
         for (int i = 1; i < HAND_SIZE; i++) {
@@ -88,6 +92,7 @@ public class HandEvaluator {
     }
 
     public static void valueTest(Player currentPlayer, Hand currentHand) {
+        System.out.println("Checking for pairs: " + currentPlayer);
         int valueArray[] = new int[HAND_SIZE];
 
         for (int i = 0; i < HAND_SIZE; i++) {

@@ -13,15 +13,15 @@ public class FindWinner {
         int playerOneFinalScore = playerOne.getCurrentScore().getScore();
         int playerTwoFinalScore = playerTwo.getCurrentScore().getScore();
 
-        if (playerTwoFinalScore != playerTwoFinalScore)
+        if (playerOneFinalScore != playerTwoFinalScore)
         {
             if (playerOneFinalScore > playerTwoFinalScore)
             {
                 playerOne.setWinCount(+1);
-                System.out.println("Player 1 wins");
+                System.out.println("Player 1 wins" + playerOne.getCurrentScore());
             } else {
                 playerTwo.setWinCount(+1);
-                System.out.println("Player 2 wins");
+                System.out.println("Player 2 wins" + playerTwo.getCurrentScore());
             }
 
         } else {
