@@ -1,18 +1,13 @@
 package com.notleh.services;
 
+import com.notleh.enums.EnumCardValues;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class InputSeperateSort {
 
     static int HAND_SIZE = 5;
-
-    public void sortedArr (ArrayList<String> cardArray) {
-
-
-    }
 
     public static ArrayList<String> createCardArray(String validUserInput, Integer stringStart, Integer stringEnd)
     {
@@ -25,8 +20,34 @@ public class InputSeperateSort {
             playerCardsArr.add(playerCardsArrTemp[i]);
         }
 
+        sortHand(playerCardsArr);
 
         return playerCardsArr;
+    }
+
+    public static void sortHand(ArrayList<String> arrPlayerCards) {
+
+        for (int i = 0; i < HAND_SIZE; i++) {
+
+            for (int j = 0; j < HAND_SIZE; j++) {
+
+                String smallString = arrPlayerCards.get(i);
+                String smallSubStr = smallString.substring(0, 1);
+                EnumCardValues smallEnum = EnumCardValues.valueOfCard(smallSubStr);
+
+                String bigString = arrPlayerCards.get(j);
+                String bigSubStr = bigString.substring(0, 1);
+                EnumCardValues bigEnum = EnumCardValues.valueOfCard(bigSubStr);
+
+                assert smallEnum != null;
+                assert bigEnum != null;
+                if (smallEnum.getIntValue() > bigEnum.getIntValue()) {
+                    arrPlayerCards.set(i, bigString);
+                    arrPlayerCards.set(j, smallString);
+                }
+            }
+        }
+
     }
 
 

@@ -5,6 +5,8 @@ import com.notleh.entities.Player;
 import com.notleh.enums.EnumCardSuits;
 import com.notleh.enums.EnumCardValues;
 
+import java.util.Objects;
+
 import static com.notleh.enums.EnumHandScores.*;
 
 public class HandEvaluator {
@@ -23,7 +25,6 @@ public class HandEvaluator {
             for (int i = 1; i < HAND_SIZE; i++) {
                 if (currentHand.cardsInHand.get(i).getValue().getIntValue() == (10 + i)) {
                     ascendingOrder = true;
-                    continue;
                 } else return;
             }
 

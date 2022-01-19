@@ -39,7 +39,6 @@ public class Main {
         ArrayList<String> playerTwoHandArr = createCardArray(inputHandString, PLAYER_TWO_BEGIN, PLAYER_TWO_END);
 
         Hand playerOneHand = new Hand();
-
         Hand playerTwoHand = new Hand();
 
 
