@@ -2,8 +2,6 @@ package com.notleh.entities;
 
 import com.notleh.enums.EnumHandScores;
 
-import java.util.ArrayList;
-
 public class Player {
 
     String name;
@@ -30,6 +28,10 @@ public class Player {
     public void setWinCount(Integer winCount)
     {
         this.winCount = winCount;
+    }
+
+    public void getWinCount(Integer winCount) {
+
     }
 }
 

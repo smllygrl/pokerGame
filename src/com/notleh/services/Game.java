@@ -5,6 +5,7 @@ import com.notleh.entities.Player;
 import com.notleh.enums.EnumHandScores;
 
 import static com.notleh.enums.EnumHandScores.STRAIGHT;
+import static com.notleh.enums.EnumHandScores.THREE_OF_KIND;
 import static com.notleh.services.FindWinner.findWinner;
 import static com.notleh.services.HandEvaluator.*;
 
@@ -17,21 +18,40 @@ public class Game {
         findWinner(playerOne, playerTwo, playerOneHand, playerTwoHand);
     }
 
-    public static void playGame (Player player, Hand playerHand)
-    {
+    public static void playGame (Player player, Hand playerHand) {
+
         royalFlushTest(player, playerHand);
-        if (player.getCurrentScore() != EnumHandScores.ROYAL_FLUSH)
-        {
+
+        if (player.getCurrentScore() != EnumHandScores.ROYAL_FLUSH) {
+
             straightFlushTest(player, playerHand);
-            if (player.getCurrentScore() != EnumHandScores.STRAIGHT_FLUSH)
-            {
-                flushTest(player, playerHand);
-                if(player.getCurrentScore() != EnumHandScores.FLUSH)
-                {
-                    straightTest(player, playerHand);
-                    if(player.getCurrentScore() != STRAIGHT)
-                    {
-                        valueTest(player, playerHand);
+
+            if (player.getCurrentScore() != EnumHandScores.STRAIGHT_FLUSH) {
+
+                fourOfAKind(player, playerHand);
+
+                if (player.getCurrentScore() != EnumHandScores.FOUR_OF_KIND) {
+
+                    fullHouseTest(player, playerHand);
+
+                    if (player.getCurrentScore() != EnumHandScores.FULL_HOUSE) {
+
+                        flushTest(player, playerHand);
+
+                        if (player.getCurrentScore() != EnumHandScores.FLUSH) {
+
+                            straightTest(player, playerHand);
+
+                            if (player.getCurrentScore() != STRAIGHT) {
+
+                                threeOfAKind(player, playerHand);
+
+                                if (player.getCurrentScore() != THREE_OF_KIND) {
+
+                                    pairTest(player, playerHand);
+                                }
+                            }
+                        }
                     }
                 }
             }
