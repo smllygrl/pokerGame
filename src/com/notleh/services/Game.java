@@ -4,6 +4,8 @@ import com.notleh.entities.Hand;
 import com.notleh.entities.Player;
 import com.notleh.enums.EnumHandScores;
 
+import java.io.FileNotFoundException;
+
 import static com.notleh.enums.EnumHandScores.STRAIGHT;
 import static com.notleh.enums.EnumHandScores.THREE_OF_KIND;
 import static com.notleh.services.FindWinner.findWinner;
@@ -11,8 +13,7 @@ import static com.notleh.services.HandEvaluator.*;
 
 public class Game {
 
-    public static void game (Player playerOne, Hand playerOneHand, Player playerTwo, Hand playerTwoHand)
-    {
+    public static void game (Player playerOne, Hand playerOneHand, Player playerTwo, Hand playerTwoHand) throws FileNotFoundException {
         playGame(playerOne, playerOneHand);
         playGame(playerTwo, playerTwoHand);
         findWinner(playerOne, playerTwo, playerOneHand, playerTwoHand);
