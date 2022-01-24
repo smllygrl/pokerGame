@@ -30,7 +30,8 @@ public class Player {
         this.winCount = winCount;
     }
 
-    public void getWinCount(Integer winCount) {
+    public Integer getWinCount(Player currentPlayer) {
+        return winCount;
 
     }
 }

@@ -4,6 +4,7 @@ import com.notleh.entities.Hand;
 import com.notleh.entities.Player;
 import com.notleh.enums.EnumHandScores;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 import static com.notleh.services.PlayAgain.playAgain;
@@ -20,21 +21,21 @@ public class FindWinner {
         {
             if (playerOneFinalScore > playerTwoFinalScore)
             {
-                playerOne.setWinCount(+1);
-                System.out.println("Player 1 wins" + playerOne.getCurrentScore());
+                playerOne.setWinCount(playerOne.getWinCount(playerOne) + 1);
+                System.out.println("Player 1 wins with a " + playerOne.getCurrentScore() + ". Win count: " + playerOne.getWinCount(playerOne));
                 Scanner input = new Scanner(System.in);
                 System.out.println("Play again? Y / N");
                 String yesOrNo = input.nextLine();
-                if (yesOrNo == "Y"){
+                if (Objects.equals(yesOrNo, "Y")){
                     playAgain(playerOne, playerTwo);
                 }
             } else {
-                playerTwo.setWinCount(+1);
-                System.out.println("Player 2 wins" + playerTwo.getCurrentScore());
+                playerTwo.setWinCount(playerTwo.getWinCount(playerTwo) + 1);
+                System.out.println("Player 2 wins with a " + playerTwo.getCurrentScore() + ". Win count: " + playerTwo.getWinCount(playerTwo));
                 Scanner input = new Scanner(System.in);
                 System.out.println("Play again? Y / N");
                 String yesOrNo = input.nextLine();
-                if (yesOrNo == "Y"){
+                if ("Y".equals(yesOrNo)){
                     playAgain(playerOne, playerTwo);
                 }
             }

@@ -2,6 +2,7 @@ package com.notleh.services;
 
 import com.notleh.entities.Hand;
 import com.notleh.entities.Player;
+import com.notleh.enums.EnumHandScores;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -32,6 +33,9 @@ public class PlayAgain {
 
         playerOneNewHand.buildHand(playerOneHandArr);
         playerTwoNewHand.buildHand(playerTwoHandArr);
+
+        playerOne.setCurrentScore(EnumHandScores.START_SCORE);
+        playerTwo.setCurrentScore(EnumHandScores.START_SCORE);
 
         game(playerOne, playerOneNewHand, playerTwo, playerTwoNewHand);
     }
