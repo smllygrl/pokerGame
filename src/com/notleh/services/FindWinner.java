@@ -22,7 +22,8 @@ public class FindWinner {
             if (playerOneFinalScore > playerTwoFinalScore)
             {
                 playerOne.setWinCount(playerOne.getWinCount(playerOne) + 1);
-                System.out.println("Player 1 wins with a " + playerOne.getCurrentScore() + ". Win count: " + playerOne.getWinCount(playerOne));
+                System.out.println("Player 1 wins with a " + playerOne.getCurrentScore() + ". Win count: " + playerOne.getWinCount(playerOne) + " hands.");
+                System.out.println("Player 2 lost with a " + playerTwo.getCurrentScore() + ". Win count: " + playerTwo.getWinCount(playerTwo) + " hands.");
                 Scanner input = new Scanner(System.in);
                 System.out.println("Play again? Y / N");
                 String yesOrNo = input.nextLine();
@@ -31,7 +32,8 @@ public class FindWinner {
                 }
             } else {
                 playerTwo.setWinCount(playerTwo.getWinCount(playerTwo) + 1);
-                System.out.println("Player 2 wins with a " + playerTwo.getCurrentScore() + ". Win count: " + playerTwo.getWinCount(playerTwo));
+                System.out.println("Player 2 wins with a " + playerTwo.getCurrentScore() + ". Win count: " + playerTwo.getWinCount(playerTwo) + " hands.");
+                System.out.println("Player 1 lost with a " + playerOne.getCurrentScore() + ". Win count: " + playerOne.getWinCount(playerOne) + " hands.");
                 Scanner input = new Scanner(System.in);
                 System.out.println("Play again? Y / N");
                 String yesOrNo = input.nextLine();

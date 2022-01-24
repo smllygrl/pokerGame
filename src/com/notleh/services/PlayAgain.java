@@ -34,8 +34,8 @@ public class PlayAgain {
         playerOneNewHand.buildHand(playerOneHandArr);
         playerTwoNewHand.buildHand(playerTwoHandArr);
 
-        playerOne.setCurrentScore(EnumHandScores.START_SCORE);
-        playerTwo.setCurrentScore(EnumHandScores.START_SCORE);
+        playerOne.setCurrentScore(EnumHandScores.ZER0);
+        playerTwo.setCurrentScore(EnumHandScores.ZER0);
 
         game(playerOne, playerOneNewHand, playerTwo, playerTwoNewHand);
     }

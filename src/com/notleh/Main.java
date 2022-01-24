@@ -8,15 +8,9 @@ import com.notleh.services.Game;
 import com.notleh.services.InputSeperateSort;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
-// Services
-
-import static com.notleh.enums.EnumHandScores.START_SCORE;
+import static com.notleh.enums.EnumHandScores.ZER0;
 import static com.notleh.services.Game.game;
 import static com.notleh.services.ValidateHand.validateHand;
 import static com.notleh.services.InputSeperateSort.createCardArray;
@@ -41,13 +35,11 @@ public class Main {
         Hand playerOneHand = new Hand();
         Hand playerTwoHand = new Hand();
 
-
         playerOneHand.buildHand(playerOneHandArr);
         playerTwoHand.buildHand(playerTwoHandArr);
-        System.out.println(playerOneHand.cardsInHand.toString());
-        System.out.println(playerTwoHand.cardsInHand.toString());
-        Player playerOne = new Player("playerOne", playerOneHand, START_SCORE, 0);
-        Player playerTwo = new Player("playerTwo", playerTwoHand, START_SCORE, 0);
+
+        Player playerOne = new Player("playerOne", playerOneHand, ZER0, 0);
+        Player playerTwo = new Player("playerTwo", playerTwoHand, ZER0, 0);
 
         Game game = new Game();
         game(playerOne, playerOneHand, playerTwo, playerTwoHand);
