@@ -1,25 +1,38 @@
 package com.notleh.entities;
 
-import java.util.ArrayList;
+import com.notleh.enums.EnumHandScores;
 
 public class Player {
 
     String name;
-    ArrayList hand;
-    Integer currentScore;
+    Hand cardsInHand;
+    EnumHandScores currentScore;
     Integer winCount;
 
-    public Player(String name, ArrayList hand, Integer currentScore, Integer winCount)
+    public Player(String name, Hand cardsInHand, EnumHandScores currentScore, Integer winCount)
     {
         this.name = name;
-        this.hand = hand;
+        this.cardsInHand = cardsInHand;
         this.currentScore = currentScore;
         this.winCount = winCount;
     }
 
-    public void sayScoreAndWins()
-    {
-        System.out.println(name + "got a score of : " + currentScore + " and has won this many games: " + winCount);
+    public void setCurrentScore(EnumHandScores currentScore) {
+        this.currentScore = currentScore;
     }
 
+    public EnumHandScores getCurrentScore() {
+        return currentScore;
+    }
+
+    public void setWinCount(Integer winCount)
+    {
+        this.winCount = winCount;
+    }
+
+    public Integer getWinCount(Player currentPlayer) {
+        return winCount;
+
+    }
 }
+

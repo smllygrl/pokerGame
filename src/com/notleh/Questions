@@ -1,26 +1,5 @@
-- How do I get a value from system in and save it as a string?
+- Stream sorted... not work??
 
+- Cards in hand are null .. why?!
 
-
-- As long as the above string is public, I can use it wherever right?
-
-
-
-- Make substrings into ArrayLists?
-
-
-
-- How to handle values and suits?
-
-
-
-
-- How might I structure a HandEvaluator test?
-
-
-
-Card as entity (What else can be an entity)
-GitLab pokerHand
-GetWinner -> HandClass
-drawio flow
-UML (ERD for programs) boxes? Maps out classes and their relationships
+- Retain win count each time it runs?
