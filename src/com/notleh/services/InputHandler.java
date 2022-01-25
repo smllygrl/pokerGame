@@ -8,6 +8,11 @@ import static com.notleh.services.ValidateHand.validateHand;
 
 public class InputHandler {
 
+    public static String getInput () throws FileNotFoundException {
+        handleInput();
+        return null;
+    }
+
     public static String handleInput () throws FileNotFoundException {
 
         File file = new File("/Users/NLH/Desktop/poker-hands.txt");

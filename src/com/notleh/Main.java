@@ -15,9 +15,12 @@ import java.util.Scanner;
 
 import static com.notleh.enums.EnumHandScores.ZER0;
 import static com.notleh.services.Game.game;
+//import static com.notleh.services.InputHandler.handleInput;
+//import static com.notleh.services.ValidateHand.validateHand;
+import static com.notleh.services.InputHandler.getInput;
 import static com.notleh.services.InputHandler.handleInput;
-import static com.notleh.services.ValidateHand.validateHand;
 import static com.notleh.services.InputSeperateSort.createCardArray;
+import static com.notleh.services.PreparePlayers.preparePlayers;
 
 public class Main {
 
@@ -28,25 +31,40 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        String inputString = handleInput();
+        int playerOneCount = 0;
+        int playerTwoCount = 0;
 
-        ArrayList<String> playerOneHandArr = createCardArray(inputString, PLAYER_ONE_BEGIN, PLAYER_ONE_END);
-        ArrayList<String> playerTwoHandArr = createCardArray(inputString, PLAYER_TWO_BEGIN, PLAYER_TWO_END);
+        File file = new File("/Users/NLH/Desktop/poker-hands.txt");
+        Scanner sc = new Scanner(file);
 
-        Hand playerOneHand = new Hand();
-        Hand playerTwoHand = new Hand();
+       while (sc.hasNext()) {
+           String line = sc.nextLine();
+           preparePlayers(line, "playerOne", "playerTwo", playerOneCount, playerTwoCount);
+       }
 
-        playerOneHand.buildHand(playerOneHandArr);
-        playerTwoHand.buildHand(playerTwoHandArr);
 
-        System.out.println(playerOneHand.cardsInHand.toString());
-        System.out.println(playerTwoHand.cardsInHand.toString());
 
-        Player playerOne = new Player("playerOne", playerOneHand, ZER0, 0);
-        Player playerTwo = new Player("playerTwo", playerTwoHand, ZER0, 0);
+//        String inputString = handleInput();
 
-        Game game = new Game();
-        game(playerOne, playerOneHand, playerTwo, playerTwoHand);
+//       String line = handleInput();
+//
+//        ArrayList<String> playerOneHandArr = createCardArray(line, PLAYER_ONE_BEGIN, PLAYER_ONE_END);
+//        ArrayList<String> playerTwoHandArr = createCardArray(line, PLAYER_TWO_BEGIN, PLAYER_TWO_END);
+//
+//        Hand playerOneHand = new Hand();
+//        Hand playerTwoHand = new Hand();
+//
+//        playerOneHand.buildHand(playerOneHandArr);
+//        playerTwoHand.buildHand(playerTwoHandArr);
+//
+//        System.out.println(playerOneHand.cardsInHand.toString());
+//        System.out.println(playerTwoHand.cardsInHand.toString());
+//
+//        Player playerOne = new Player("playerOne", playerOneHand, ZER0, 0);
+//        Player playerTwo = new Player("playerTwo", playerTwoHand, ZER0, 0);
+//
+//        Game game = new Game();
+//        game(playerOne, playerOneHand, playerTwo, playerTwoHand);
     }
 
 }

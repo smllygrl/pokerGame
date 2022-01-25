@@ -4,16 +4,18 @@ import com.notleh.entities.Hand;
 import com.notleh.entities.Player;
 import com.notleh.enums.EnumHandScores;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Scanner;
 
 import static com.notleh.enums.EnumHandScores.STRAIGHT;
 import static com.notleh.enums.EnumHandScores.THREE_OF_KIND;
 import static com.notleh.services.FindWinner.findWinner;
 import static com.notleh.services.HandEvaluator.*;
-import static com.notleh.services.InputHandler.handleInput;
 import static com.notleh.services.InputSeperateSort.createCardArray;
+import static com.notleh.services.PreparePlayers.preparePlayers;
 
 public class Game {
 
@@ -69,19 +71,36 @@ public class Game {
         }
     }
 
-    public static void playAgain (Player playerOne, Player playerTwo) throws FileNotFoundException {
+//    public static void playAgain (Player playerOne, Player playerTwo) throws FileNotFoundException {
 
-        String inputString = handleInput();
+//        File file = new File("/Users/NLH/Desktop/poker-hands.txt");
+//        Scanner sc = new Scanner(file);
+//        String line = "";
+//
+//        while (sc.hasNext()) {
+//            line = sc.nextLine();
+//        }
 
-        ArrayList<String> playerOneHandArr = createCardArray(inputString, PLAYER_ONE_BEGIN, PLAYER_ONE_END);
-        ArrayList<String> playerTwoHandArr = createCardArray(inputString, PLAYER_TWO_BEGIN, PLAYER_TWO_END);
+//        Integer playerOneWinCount = playerOne.getWinCount(playerOne);
+//        Integer playerTwoWinCount = playerTwo.getWinCount(playerTwo);
+//
+//        preparePlayers(line, "playerOne", "playerTwo", playerOneWinCount, playerTwoWinCount);
 
-        Hand playerOneNewHand = new Hand();
-        Hand playerTwoNewHand = new Hand();
 
-        playerOneNewHand.buildHand(playerOneHandArr);
-        playerTwoNewHand.buildHand(playerTwoHandArr);
+//        String inputString = handleInput();
 
-        game(playerOne, playerOneNewHand, playerTwo, playerTwoNewHand);
-    }
+//        ArrayList<String> playerOneHandArr = createCardArray(line, PLAYER_ONE_BEGIN, PLAYER_ONE_END);
+//        ArrayList<String> playerTwoHandArr = createCardArray(line, PLAYER_TWO_BEGIN, PLAYER_TWO_END);
+//
+//        Hand playerOneNewHand = new Hand();
+//        Hand playerTwoNewHand = new Hand();
+//
+//        playerOneNewHand.buildHand(playerOneHandArr);
+//        playerTwoNewHand.buildHand(playerTwoHandArr);
+//
+//        System.out.println(playerOneNewHand.cardsInHand.toString());
+//        System.out.println(playerTwoNewHand.cardsInHand.toString());
+//
+//        game(playerOne, playerOneNewHand, playerTwo, playerTwoNewHand);
+//    }
 }

@@ -32,7 +32,6 @@ public class Player {
 
     public Integer getWinCount(Player currentPlayer) {
         return winCount;
-
     }
 }
 
