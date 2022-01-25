@@ -10,22 +10,31 @@ public class InputHandler {
 
     public static String handleInput () throws FileNotFoundException {
 
-        String inputHandString = null;
-        Scanner sc = new Scanner(new File("/Users/NLH/Desktop/poker-hands.txt"));
+        File file = new File("/Users/NLH/Desktop/poker-hands.txt");
+        Scanner sc = new Scanner(file);
+        String line = "";
+
+        if (sc.hasNext()) {
+            System.out.println("Running txt file");
+            line = sc.nextLine();
+            System.out.println(line);
+        } else manualInput();
+
+
+        return line;
+    }
+
+    public static String manualInput() {
+
+        System.out.println("Manual input now required");
+        Scanner manualInput = new Scanner(System.in);
 
         System.out.println("Input 10 card values + ENTER (eg. AH 9S 4D TD 8S 4H JS 3C TC 8D)");
+        String manLine = manualInput.nextLine();
 
-        if (sc.nextLine() == null) {
-            System.out.println("Manual input now required");
-            Scanner manualInput = new Scanner(System.in);
-            String inputHandString = manualInput.nextLine();
-//            validateHand(manualInputString);
-        } else {
-            String inputHandString = sc.nextLine();
-//            validateHand(inputHandString);
-        }
+        validateHand(manLine);
 
-        return inputHandString;
+        return manLine;
 
     }
 }

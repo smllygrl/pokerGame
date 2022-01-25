@@ -3,15 +3,13 @@ package com.notleh.services;
 import com.notleh.entities.Hand;
 import com.notleh.entities.Player;
 
-import java.io.FileNotFoundException;
-
 import static com.notleh.enums.EnumHandScores.HIGH_CARD;
 import static com.notleh.enums.EnumHandScores.LOST_DRAW;
 import static com.notleh.services.FindWinner.findWinner;
 
 public class SolveDraw {
 
-    public static void solveDraw(Player playerOne, Player playerTwo, Hand playerOneHand, Hand playerTwoHand) throws FileNotFoundException {
+    public static void solveDraw(Player playerOne, Player playerTwo, Hand playerOneHand, Hand playerTwoHand) {
         System.out.println("It is a draw");
 //        As the hand is sorted, the final card in the hand has the highest value
         int playerOneHighCard = playerOneHand.cardsInHand.get(4).getValue().intValue;
@@ -31,7 +29,7 @@ public class SolveDraw {
         } else solveSuperDraw(playerOne, playerTwo, playerOneHand, playerTwoHand);
     }
 
-    public static void solveSuperDraw (Player playerOne, Player playerTwo, Hand playerOneHand, Hand playerTwoHand) throws FileNotFoundException {
+    public static void solveSuperDraw (Player playerOne, Player playerTwo, Hand playerOneHand, Hand playerTwoHand) {
         int playerOneSecondHighestCard = playerOneHand.cardsInHand.get(3).getValue().intValue;
         int playerTwoSecondHighestCard = playerTwoHand.cardsInHand.get(3).getValue().intValue;
 
