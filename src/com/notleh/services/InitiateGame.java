@@ -20,8 +20,6 @@ public class InitiateGame {
 
     public static Integer initiateGame (String inputLine) throws FileNotFoundException {
 
-        int winner;
-
         ArrayList<String> playerOneHandArr = createCardArray(inputLine, PLAYER_ONE_BEGIN, PLAYER_ONE_END);
         ArrayList<String> playerTwoHandArr = createCardArray(inputLine, PLAYER_TWO_BEGIN, PLAYER_TWO_END);
 
@@ -40,16 +38,20 @@ public class InitiateGame {
             solveDraw(playerOne, playerTwo, playerOneHand, playerTwoHand);
         }
 
+        int winner = 0;
 
         if (playerOne.getCurrentScore().getScore() > playerTwo.getCurrentScore().getScore()){
             winner = 1;
-        } else winner = 2;
+        }
 
+        if (playerTwo.getCurrentScore().getScore() > playerOne.getCurrentScore().getScore()){
+            winner = 2;
+        }
 
-//        if (winner == 0) {
-//            System.out.println("DEBUG INFO - Input: " + inputLine + ". P1 hand: " + playerOneHand.cardsInHand.toString() + ". P2 hand: " + playerTwoHand.cardsInHand.toString() + ".");
-//            System.out.println("CONT - P1 score: " + playerOne.getCurrentScore().getScore() + ". P2 score: " + playerTwo.getCurrentScore().getScore());
-//        }
+        if (winner == 0) {
+            System.out.println("DEBUG INFO - Input: " + inputLine + ". P1 hand: " + playerOneHand.cardsInHand.toString() + ". P2 hand: " + playerTwoHand.cardsInHand.toString() + ".");
+            System.out.println("CONT - P1 score: " + playerOne.getCurrentScore().getScore() + ". P2 score: " + playerTwo.getCurrentScore().getScore());
+        }
 
         return winner;
     }
