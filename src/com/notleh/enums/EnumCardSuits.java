@@ -10,18 +10,27 @@ public enum EnumCardSuits {
 
     EnumCardSuits(final String suit) { this.suit = suit; }
 
+//    public static EnumCardSuits suitOfCard(String substring) {
+//        substring = suitOfCard()
+//    }
 
-    public String getSuit() { return suit; }
+    public String getSuit() { return this.suit; }
 
-    public static EnumCardSuits suitOfCard (String cardSuit)
+    @Override
+    public String toString() {
+        return suit.toString();
+    }
+
+    public static EnumCardSuits suitOfCard(String cardSuit)
     {
-        for (EnumCardSuits enumCardSuit : values())
+        for (EnumCardSuits enumCardSuits : values())
         {
-            if (enumCardSuit.suit.equals(cardSuit))
+            if (enumCardSuits.suit.equals(cardSuit))
             {
-                return enumCardSuit;
+                return enumCardSuits;
             }
         }
+        System.out.println("FAILED TO MAKE SUIT: " + cardSuit);
         return null;
     }
 }

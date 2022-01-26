@@ -20,11 +20,8 @@ public class Game {
     public static int PLAYER_TWO_END = 29;
 
     public static void game (Player playerOne, Hand playerOneHand, Player playerTwo, Hand playerTwoHand) throws FileNotFoundException {
-
         playGame(playerOne, playerOneHand);
         playGame(playerTwo, playerTwoHand);
-//        int winner = findWinner(playerOne, playerTwo, playerOneHand, playerTwoHand);
-//        return winner;
     }
 
     public static void playGame (Player player, Hand playerHand) {
