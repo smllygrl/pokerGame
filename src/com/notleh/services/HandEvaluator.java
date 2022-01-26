@@ -54,7 +54,9 @@ public class HandEvaluator {
 
         int startValue = currentHand.cardsInHand.get(0).getValue().getIntValue();
         EnumCardSuits suitToCompare = currentHand.cardsInHand.get(0).getSuit();
+
 //        Starting at 1 because 0 is the startValue which we compare all others
+
         for (int i = 1; i < HAND_SIZE; i++) {
 //            Minus i as card sizes get smaller as index increases
             if(currentHand.cardsInHand.get(i).getValue().getIntValue() == startValue - i)
@@ -182,7 +184,7 @@ public class HandEvaluator {
 
     public static void threeOfAKind (Player currentPlayer, Hand currentHand) {
 
-//        As the hand is sorted, the three will either be the first three cards, or the last three
+//        As the hand is sorted, the three will either be the first three cards, the last three, or the middle three
 
         int[] firstThree =
                 {
@@ -196,18 +198,29 @@ public class HandEvaluator {
             }
         }
 
-        int[] lastThree =
+        int[] middleThree =
                 {
+                        currentHand.cardsInHand.get(1).getValue().getIntValue(),
                         currentHand.cardsInHand.get(2).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(3).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(4).getValue().getIntValue()};
+                        currentHand.cardsInHand.get(3).getValue().getIntValue()};
 
-        if (lastThree[0] == lastThree [1]) {
-            if (lastThree[1] == lastThree[2]) {
+        if (middleThree[0] == middleThree [1]) {
+            if (middleThree[1] == middleThree[2]) {
                 currentPlayer.setCurrentScore(THREE_OF_KIND);
             }
-        }
 
+            int[] lastThree =
+                    {
+                            currentHand.cardsInHand.get(2).getValue().getIntValue(),
+                            currentHand.cardsInHand.get(3).getValue().getIntValue(),
+                            currentHand.cardsInHand.get(4).getValue().getIntValue()};
+
+            if (lastThree[0] == lastThree[1]) {
+                if (lastThree[1] == lastThree[2]) {
+                    currentPlayer.setCurrentScore(THREE_OF_KIND);
+                }
+            }
+        }
 
     }
 

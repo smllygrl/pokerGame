@@ -5,12 +5,10 @@ import com.notleh.entities.Player;
 
 import static com.notleh.enums.EnumHandScores.HIGH_CARD;
 import static com.notleh.enums.EnumHandScores.LOST_DRAW;
-import static com.notleh.services.FindWinner.findWinner;
 
 public class SolveDraw {
 
     public static void solveDraw(Player playerOne, Player playerTwo, Hand playerOneHand, Hand playerTwoHand) {
-        System.out.println("It is a draw");
 //        As the hand is sorted, the final card in the hand has the highest value
         int playerOneHighCard = playerOneHand.cardsInHand.get(4).getValue().intValue;
         int playerTwoHighCard = playerTwoHand.cardsInHand.get(4).getValue().intValue;
@@ -25,7 +23,7 @@ public class SolveDraw {
                 playerTwo.setCurrentScore(HIGH_CARD);
                 playerOne.setCurrentScore(LOST_DRAW);
             }
-            findWinner(playerOne, playerTwo, playerOneHand, playerTwoHand);
+
         } else solveSuperDraw(playerOne, playerTwo, playerOneHand, playerTwoHand);
     }
 
@@ -52,7 +50,6 @@ public class SolveDraw {
                 playerTwo.setCurrentScore(HIGH_CARD);
                 playerOne.setCurrentScore(LOST_DRAW);
             }
-            findWinner(playerOne, playerTwo, playerOneHand, playerTwoHand);
 
         } else if (playerOneThirdHighestCard != playerTwoThirdHighestCard)
         {
@@ -64,7 +61,6 @@ public class SolveDraw {
                 playerTwo.setCurrentScore(HIGH_CARD);
                 playerOne.setCurrentScore(LOST_DRAW);
             }
-            findWinner(playerOne, playerTwo, playerOneHand, playerTwoHand);
 
         } else if (playerOneFourthHighestCard != playerTwoFourthHighestCard)
         {
@@ -76,7 +72,6 @@ public class SolveDraw {
                 playerTwo.setCurrentScore(HIGH_CARD);
                 playerOne.setCurrentScore(LOST_DRAW);
             }
-            findWinner(playerOne, playerTwo, playerOneHand, playerTwoHand);
 
         } else if (playerOneFifthHighestCard != playerTwoFifthHighestCard)
         {
@@ -88,7 +83,7 @@ public class SolveDraw {
             playerTwo.setCurrentScore(HIGH_CARD);
             playerOne.setCurrentScore(LOST_DRAW);
             }
-            findWinner(playerOne, playerTwo, playerOneHand, playerTwoHand);
+
         } else System.out.println("Both players have the same high card, the draw cannot be solved");
 }
 }

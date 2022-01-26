@@ -7,14 +7,12 @@ public class Player {
     String name;
     Hand cardsInHand;
     EnumHandScores currentScore;
-    Integer winCount;
 
-    public Player(String name, Hand cardsInHand, EnumHandScores currentScore, Integer winCount)
+    public Player(String name, Hand cardsInHand, EnumHandScores currentScore)
     {
         this.name = name;
         this.cardsInHand = cardsInHand;
         this.currentScore = currentScore;
-        this.winCount = winCount;
     }
 
     public void setCurrentScore(EnumHandScores currentScore) {
@@ -25,13 +23,6 @@ public class Player {
         return currentScore;
     }
 
-    public void setWinCount(Integer winCount)
-    {
-        this.winCount = winCount;
-    }
 
-    public Integer getWinCount(Player currentPlayer) {
-        return winCount;
-    }
 }
 
