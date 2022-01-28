@@ -2,11 +2,8 @@ package com.notleh.services;
 
 import com.notleh.entities.Hand;
 import com.notleh.entities.Player;
-import com.notleh.enums.EnumCardSuits;
 import com.notleh.enums.EnumCardValues;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Objects;
 
 import static com.notleh.enums.EnumHandScores.*;
@@ -46,7 +43,6 @@ public class HandEvaluator {
     }
 
     public static Boolean sameValue (int[] cardValues) {
-
         boolean sameValue = false;
         int valueToCompare = cardValues[0];
 
@@ -203,9 +199,11 @@ public class HandEvaluator {
         }
     }
 
-    public static void threeOfAKind (Player currentPlayer, Hand currentHand) {
+    public static int[] threeOfAKind (Player currentPlayer, Hand currentHand) {
 
 //        As the hand is sorted, the three will either be the first three cards, the last three, or the middle three
+
+        int[] sameThree = new int[3];
 
         int[] firstThree =
                 {
@@ -215,6 +213,7 @@ public class HandEvaluator {
 
         if (sameValue(firstThree)) {
             System.out.println("THREE OF A KIND: " + currentHand.cardsInHand.toString());
+            sameThree = firstThree;
             currentPlayer.setCurrentScore(THREE_OF_KIND);
         }
 
@@ -226,6 +225,7 @@ public class HandEvaluator {
 
         if (sameValue(middleThree)) {
             System.out.println("THREE OF A KIND: " + currentHand.cardsInHand.toString());
+            sameThree = firstThree;
             currentPlayer.setCurrentScore(THREE_OF_KIND);
         }
 
@@ -237,21 +237,23 @@ public class HandEvaluator {
 
         if (sameValue(lastThree)) {
             System.out.println("THREE OF A KIND: " + currentHand.cardsInHand.toString());
+            sameThree = lastThree;
             currentPlayer.setCurrentScore(THREE_OF_KIND);
         }
+
+        return sameThree;
 
     }
 
 
-    public static void pairTest(Player currentPlayer, Hand currentHand) {
+    public static int[][] pairTest(Player currentPlayer, Hand currentHand) {
 
 //        As the hand is sorted, pairs can appear in any of the 4 index possibilities:
 //        0, 1 // 1, 2 // 2, 3 // 3, 4
 //        This function will see if there are any pairs & count the number of pairs if they do exist
 //        There will be one card in the hand not in a pair of there are two pairs
 
-        int pairCount = 0;
-
+        int[][] potentialPairs = new int [4][2];
 
         int[] cardOneCardTwo =
                 {
@@ -259,11 +261,15 @@ public class HandEvaluator {
                         currentHand.cardsInHand.get(1).getValue().getIntValue()
                 };
 
+        potentialPairs[0] = cardOneCardTwo;
 
-        if (cardOneCardTwo[0] == cardOneCardTwo[1])
-        {
-            pairCount ++;
-        }
+        int[] cardTwoCardThree =
+                {
+                        currentHand.cardsInHand.get(1).getValue().getIntValue(),
+                        currentHand.cardsInHand.get(2).getValue().getIntValue()
+                };
+
+        potentialPairs[1] = cardTwoCardThree;
 
 
         int[] cardThreeCardFour =
@@ -272,23 +278,7 @@ public class HandEvaluator {
                         currentHand.cardsInHand.get(3).getValue().getIntValue()
                 };
 
-        if (cardThreeCardFour[0] == cardThreeCardFour[1])
-        {
-            pairCount ++;
-        }
-
-
-        int[] cardTwoCardThree =
-                {
-                        currentHand.cardsInHand.get(1).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(2).getValue().getIntValue()
-                };
-
-        if (cardTwoCardThree[0] == cardTwoCardThree[1])
-        {
-            pairCount ++;
-        }
-
+        potentialPairs[2] = cardThreeCardFour;
 
         int[] cardFourCardFive =
                 {
@@ -296,9 +286,18 @@ public class HandEvaluator {
                         currentHand.cardsInHand.get(4).getValue().getIntValue()
                 };
 
-        if (cardFourCardFive[0] == cardFourCardFive[1])
-        {
-            pairCount ++;
+        potentialPairs[3] = cardFourCardFive;
+
+        int[][] pairs = new int[2][2];
+        int pairCount = 0;
+        for (int i = 0; i < potentialPairs.length; i++) {
+            int[] pairToTest = potentialPairs[i];
+            for (int j = 0; j < 2; j++) {
+                if (pairToTest[0] == pairToTest[1]) {
+                    pairs[j] = pairToTest;
+                    pairCount++;
+                }
+            }
         }
 
         if (pairCount == 2) {
@@ -306,5 +305,7 @@ public class HandEvaluator {
         } else if (pairCount == 1) {
             currentPlayer.setCurrentScore(PAIR);
         }
+
+        return pairs;
     }
 }

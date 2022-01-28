@@ -5,6 +5,7 @@ import com.notleh.entities.Player;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static com.notleh.enums.EnumHandScores.ZER0;
 import static com.notleh.services.Game.game;
@@ -34,17 +35,21 @@ public class InitiateGame {
 
         game(playerOne, playerOneHand, playerTwo, playerTwoHand);
 
-        if (playerOne.getCurrentScore().getScore() == playerTwo.getCurrentScore().getScore()){
+        if (Objects.equals(playerOne.getCurrentScore().getScore(), playerTwo.getCurrentScore().getScore())){
             solveDraw(playerOne, playerTwo, playerOneHand, playerTwoHand);
         }
 
         int winner = 0;
 
         if (playerOne.getCurrentScore().getScore() > playerTwo.getCurrentScore().getScore()){
+            System.out.println("DEBUG: P1 Hand: " + playerOneHand.cardsInHand.toString() + ". P1 Score: " + playerOne.getCurrentScore().toString() + ".");
+            System.out.println("cont P2 Hand: " + playerTwoHand.cardsInHand.toString() + ". P2 Score: " + playerTwo.getCurrentScore().toString() + ".");
             winner = 1;
         }
 
         if (playerTwo.getCurrentScore().getScore() > playerOne.getCurrentScore().getScore()){
+            System.out.println("DEBUG: P2 Hand: " + playerTwoHand.cardsInHand.toString() + ". P2 Score: " + playerTwo.getCurrentScore().toString() + ".");
+            System.out.println("cont P1 Hand: " + playerOneHand.cardsInHand.toString() + ". P1 Score: " + playerOne.getCurrentScore().toString() + ".");
             winner = 2;
         }
 
