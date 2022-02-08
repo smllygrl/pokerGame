@@ -302,7 +302,7 @@ public class HandEvaluator {
 
         if (pairCount == 2) {
             currentPlayer.setCurrentScore(TWO_PAIRS);
-        } else if (pairCount == 1) {
+        } else if (pairCount == 2) {
             currentPlayer.setCurrentScore(PAIR);
         }
 

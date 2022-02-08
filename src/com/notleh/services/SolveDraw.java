@@ -22,6 +22,7 @@ public class SolveDraw {
         switch(mutualScore) {
             case PAIR, TWO_PAIRS -> solvePairDraw(playerOne, playerTwo, playerOneHand, playerTwoHand);
             case THREE_OF_KIND -> solveThreeOfAKindDraw(playerOne, playerTwo, playerOneHand, playerTwoHand);
+            case FULL_HOUSE ->
             default -> getHighCard(playerOne, playerTwo, playerOneHand, playerTwoHand);
         }
 
@@ -61,9 +62,9 @@ public class SolveDraw {
 //        The check below determined if this is a PAIR or TWO_PAIR scenario
         boolean secondPair = false;
 
-        if (p1SecondPair[0] != 0) {
+        if (p1SecondPair[0] != p1FirstPair[0]) {
             {
-                if (p2SecondPair[0] != 0) {
+                if (p2SecondPair[0] != p2FirstPair[0]) {
                     secondPair = true;
                 }
             }
@@ -112,6 +113,10 @@ public class SolveDraw {
             }
         } else solveSuperDraw(playerOne, playerTwo, playerOneHand, playerTwoHand);
 
+
+    }
+
+    public static void solveFullHouseDraw  (Player playerOne, Player playerTwo, Hand playerOneHand, Hand playerTwoHand) {
 
     }
 
@@ -174,4 +179,6 @@ public class SolveDraw {
             }
         } else System.out.println("Both players have the same high card, the draw cannot be solved");
 }
+
+
 }

@@ -49,7 +49,6 @@ public class Main {
         System.out.println("Player 2: " + playerTwoWinCount + " hands.");
 
 
-
     }
 
 }
