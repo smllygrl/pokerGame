@@ -8,7 +8,7 @@ import java.util.Objects;
 
 import static com.notleh.enums.EnumHandScores.*;
 
-public class HandEvaluator {
+public class HandEvaluator implements combinationTester{
 
     static int HAND_SIZE = 5;
 
@@ -308,4 +308,9 @@ public class HandEvaluator {
 
         return pairs;
     }
+
+//    @Override
+//    public void getCombination() {
+//
+//    }
 }
