@@ -180,7 +180,6 @@ public class HandEvaluator {
         }
     }
 
-
     public static void flushTest(Player currentPlayer, Hand currentHand)
     {
 //        FLUSH TEST WORKS
@@ -245,65 +244,6 @@ public class HandEvaluator {
         return sameThree;
 
     }
-
-
-//    public static int[][] pairTest(Player currentPlayer, Hand currentHand) {
-//
-//        int[][] potentialPairs = new int [4][2];
-//
-//        int[] cardOneCardTwo =
-//                {
-//                        currentHand.cardsInHand.get(0).getValue().getIntValue(),
-//                        currentHand.cardsInHand.get(1).getValue().getIntValue()
-//                };
-//
-//        potentialPairs[0] = cardOneCardTwo;
-//
-//        int[] cardTwoCardThree =
-//                {
-//                        currentHand.cardsInHand.get(1).getValue().getIntValue(),
-//                        currentHand.cardsInHand.get(2).getValue().getIntValue()
-//                };
-//
-//        potentialPairs[1] = cardTwoCardThree;
-//
-//
-//        int[] cardThreeCardFour =
-//                {
-//                        currentHand.cardsInHand.get(2).getValue().getIntValue(),
-//                        currentHand.cardsInHand.get(3).getValue().getIntValue()
-//                };
-//
-//        potentialPairs[2] = cardThreeCardFour;
-//
-//        int[] cardFourCardFive =
-//                {
-//                        currentHand.cardsInHand.get(3).getValue().getIntValue(),
-//                        currentHand.cardsInHand.get(4).getValue().getIntValue()
-//                };
-//
-//        potentialPairs[3] = cardFourCardFive;
-//
-//        int[][] pairs = new int[2][2];
-//        int pairCount = 0;
-//        for (int i = 0; i < potentialPairs.length; i++) {
-//            int[] pairToTest = potentialPairs[i];
-//            for (int j = 0; j < 2; j++) {
-//                if (pairToTest[0] == pairToTest[1]) {
-//                    pairs[j] = pairToTest;
-//                    pairCount++;
-//                }
-//            }
-//        }
-//
-//        if (pairCount == 2) {
-//            currentPlayer.setCurrentScore(TWO_PAIRS);
-//        } else if (pairCount == 1) {
-//            currentPlayer.setCurrentScore(PAIR);
-//        }
-//
-//        return pairs;
-//    }
 
     public static int @NotNull [] testForTwoPairs (Player currentPlayer, Hand currentHand) {
         int pairSize = 2;
