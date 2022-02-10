@@ -6,6 +6,12 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+class InputError extends Error {
+    public InputError(String message) {
+        super(message);
+    }
+}
+
 public class InputHandler {
 
     public static String getInput () throws FileNotFoundException {
@@ -54,8 +60,8 @@ public class InputHandler {
             System.out.println("Valid input, cards being assigned");
             return true;
         } else {
-            System.out.println("Invalid input. Please re-read input instructions and try again.");
-            return false;
+            throw new InputError("Invalid input: please ensure input resembles: AH 9S 4D TD 8S 4H JS 3C TC 8D where A is Ace, T is Ten, K is King etc");
+//            return false;
         }
     }
 }
