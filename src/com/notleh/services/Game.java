@@ -4,18 +4,23 @@ import com.notleh.entities.Hand;
 import com.notleh.entities.Player;
 import com.notleh.enums.EnumHandScores;
 
-import static com.notleh.enums.EnumHandScores.STRAIGHT;
-import static com.notleh.enums.EnumHandScores.THREE_OF_KIND;
-import static com.notleh.services.FindWinner.findWinner;
+
+import java.io.FileNotFoundException;
+
+
+import static com.notleh.enums.EnumHandScores.*;
 import static com.notleh.services.HandEvaluator.*;
 
 public class Game {
 
-    public static void game (Player playerOne, Hand playerOneHand, Player playerTwo, Hand playerTwoHand)
-    {
+    public static int PLAYER_ONE_BEGIN = 0;
+    public static int PLAYER_ONE_END = 14;
+    public static int PLAYER_TWO_BEGIN = 15;
+    public static int PLAYER_TWO_END = 29;
+
+    public static void game (Player playerOne, Hand playerOneHand, Player playerTwo, Hand playerTwoHand) throws FileNotFoundException {
         playGame(playerOne, playerOneHand);
         playGame(playerTwo, playerTwoHand);
-        findWinner(playerOne, playerTwo, playerOneHand, playerTwoHand);
     }
 
     public static void playGame (Player player, Hand playerHand) {
@@ -42,13 +47,18 @@ public class Game {
 
                             straightTest(player, playerHand);
 
-                            if (player.getCurrentScore() != STRAIGHT) {
+                            if (player.getCurrentScore() != EnumHandScores.STRAIGHT) {
 
                                 threeOfAKind(player, playerHand);
 
-                                if (player.getCurrentScore() != THREE_OF_KIND) {
+                                if (player.getCurrentScore() != EnumHandScores.THREE_OF_KIND) {
 
-                                    pairTest(player, playerHand);
+                                    testForTwoPairs(player, playerHand);
+
+                                    if (player.getCurrentScore() != EnumHandScores.TWO_PAIRS) {
+
+                                        testForOnePair(player, playerHand);
+                                    }
                                 }
                             }
                         }
