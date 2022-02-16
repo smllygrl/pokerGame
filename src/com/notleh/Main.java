@@ -36,17 +36,17 @@ public class Main {
                playerTwoWinCount++;
            }
 
-           if (winner == 0){
-               failCount++;
-           }
+//           if (winner == 0){
+//               failCount++;
+//           }
        }
 
        int totalWins = playerOneWinCount + playerTwoWinCount;
 
-        System.out.println("We played " + gameCount + " games, & found a winner for " + totalWins + " games.");
-        System.out.println("We failed " + failCount + " games.");
-        System.out.println("Player 1: " + playerOneWinCount + " hands.");
-        System.out.println("Player 2: " + playerTwoWinCount + " hands.");
+//        System.out.println("We played " + gameCount + " games, & found a winner for " + totalWins + " games.");
+//        System.out.println("We failed " + failCount + " games.");
+        System.out.println("Player 1: " + playerOneWinCount + " hands");
+        System.out.println("Player 2: " + playerTwoWinCount + " hands");
 
 
 

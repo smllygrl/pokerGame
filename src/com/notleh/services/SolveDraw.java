@@ -28,7 +28,7 @@ public class SolveDraw {
     }
 
     public static void getHighCard (Player playerOne, Player playerTwo, Hand playerOneHand, Hand playerTwoHand) {
-        System.out.println("DRAW: P1 Score - " + playerOne.getCurrentScore().toString() + ". P2 Score: " + playerTwo.getCurrentScore().toString());
+//        System.out.println("DRAW: P1 Score - " + playerOne.getCurrentScore().toString() + ". P2 Score: " + playerTwo.getCurrentScore().toString());
         int playerOneHighCard = playerOneHand.cardsInHand.get(0).getValue().intValue;
         int playerTwoHighCard = playerTwoHand.cardsInHand.get(0).getValue().intValue;
 
@@ -83,8 +83,6 @@ public class SolveDraw {
 
     public static void solveThreeOfAKindDraw (Player playerOne, Player playerTwo, Hand playerOneHand, Hand playerTwoHand) {
 
-        System.out.println("***BELOW WAS A THREE OF A KIND DRAW");
-
         int[] p1Three = threeOfAKind(playerOne, playerOneHand);
         int[] p2Three = threeOfAKind(playerTwo, playerTwoHand);
 
@@ -102,7 +100,6 @@ public class SolveDraw {
     }
 
     public static void solveSuperDraw (Player playerOne, Player playerTwo, Hand playerOneHand, Hand playerTwoHand) {
-        System.out.println("Super draw");
         int playerOneSecondHighestCard = playerOneHand.cardsInHand.get(1).getValue().intValue;
         int playerTwoSecondHighestCard = playerTwoHand.cardsInHand.get(1).getValue().intValue;
 
