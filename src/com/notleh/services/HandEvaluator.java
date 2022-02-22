@@ -3,6 +3,7 @@ package com.notleh.services;
 import com.notleh.entities.Hand;
 import com.notleh.entities.Player;
 import com.notleh.enums.EnumCardValues;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -246,67 +247,108 @@ public class HandEvaluator implements combinationTester{
     }
 
 
-    public static int[][] pairTest(Player currentPlayer, Hand currentHand) {
+//    public static int[][] pairTest(Player currentPlayer, Hand currentHand) {
+//
+//        int[][] potentialPairs = new int [4][2];
+//
+//        int[] cardOneCardTwo =
+//                {
+//                        currentHand.cardsInHand.get(0).getValue().getIntValue(),
+//                        currentHand.cardsInHand.get(1).getValue().getIntValue()
+//                };
+//
+//        potentialPairs[0] = cardOneCardTwo;
+//
+//        int[] cardTwoCardThree =
+//                {
+//                        currentHand.cardsInHand.get(1).getValue().getIntValue(),
+//                        currentHand.cardsInHand.get(2).getValue().getIntValue()
+//                };
+//
+//        potentialPairs[1] = cardTwoCardThree;
+//
+//
+//        int[] cardThreeCardFour =
+//                {
+//                        currentHand.cardsInHand.get(2).getValue().getIntValue(),
+//                        currentHand.cardsInHand.get(3).getValue().getIntValue()
+//                };
+//
+//        potentialPairs[2] = cardThreeCardFour;
+//
+//        int[] cardFourCardFive =
+//                {
+//                        currentHand.cardsInHand.get(3).getValue().getIntValue(),
+//                        currentHand.cardsInHand.get(4).getValue().getIntValue()
+//                };
+//
+//        potentialPairs[3] = cardFourCardFive;
+//
+//        int[][] pairs = new int[2][2];
+//        int pairCount = 0;
+//        for (int i = 0; i < potentialPairs.length; i++) {
+//            int[] pairToTest = potentialPairs[i];
+//            for (int j = 0; j < 2; j++) {
+//                if (pairToTest[0] == pairToTest[1]) {
+//                    pairs[j] = pairToTest;
+//                    pairCount++;
+//                }
+//            }
+//        }
+//
+//        if (pairCount == 2) {
+//            currentPlayer.setCurrentScore(TWO_PAIRS);
+//        } else if (pairCount == 1) {
+//            currentPlayer.setCurrentScore(PAIR);
+//        }
+//
+//        return pairs;
+//    }
 
-//        As the hand is sorted, pairs can appear in any of the 4 index possibilities:
-//        0, 1 // 1, 2 // 2, 3 // 3, 4
-//        This function will see if there are any pairs & count the number of pairs if they do exist
-//        There will be one card in the hand not in a pair of there are two pairs
+    public static int @NotNull [] testForTwoPairs (Player currentPlayer, Hand currentHand) {
+        int pairSize = 2;
+        int[] firstPair = new int [pairSize];
+        int[] secondPair = new int[pairSize];
+        int[] returnArray = new int[pairSize];
 
-        int[][] potentialPairs = new int [4][2];
-
-        int[] cardOneCardTwo =
-                {
-                        currentHand.cardsInHand.get(0).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(1).getValue().getIntValue()
-                };
-
-        potentialPairs[0] = cardOneCardTwo;
-
-        int[] cardTwoCardThree =
-                {
-                        currentHand.cardsInHand.get(1).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(2).getValue().getIntValue()
-                };
-
-        potentialPairs[1] = cardTwoCardThree;
-
-
-        int[] cardThreeCardFour =
-                {
-                        currentHand.cardsInHand.get(2).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(3).getValue().getIntValue()
-                };
-
-        potentialPairs[2] = cardThreeCardFour;
-
-        int[] cardFourCardFive =
-                {
-                        currentHand.cardsInHand.get(3).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(4).getValue().getIntValue()
-                };
-
-        potentialPairs[3] = cardFourCardFive;
-
-        int[][] pairs = new int[2][2];
-        int pairCount = 0;
-        for (int i = 0; i < potentialPairs.length; i++) {
-            int[] pairToTest = potentialPairs[i];
-            for (int j = 0; j < 2; j++) {
+        for (int i = 0; i < HAND_SIZE - 1; i++) {
+                int [] pairToTest = new int[pairSize];
+                int secondCard = i + 1;
+                pairToTest[0] = currentHand.cardsInHand.get(i).getValue().getIntValue();
+                pairToTest[1] = currentHand.cardsInHand.get(secondCard).getValue().getIntValue();
                 if (pairToTest[0] == pairToTest[1]) {
-                    pairs[j] = pairToTest;
-                    pairCount++;
+//                Checking if any value has been assigned
+                    if (firstPair[0] == 0) {
+                        firstPair = pairToTest;
+                    } else {
+                        secondPair = pairToTest;
+                    }
                 }
+        }
+
+        if (secondPair[0] != 0) {
+//            Creates an array with the two values of the pairs for any draw solving
+            returnArray[0] = firstPair[0];
+            returnArray[1] = secondPair[0];
+            currentPlayer.setCurrentScore(TWO_PAIRS);
+        }
+
+        return returnArray;
+    }
+
+    public static int[] testForOnePair (Player currentPlayer, Hand currentHand) {
+        int[] pair = new int [2];
+
+        for (int i = 0; i < HAND_SIZE - 1; i++) {
+            int [] pairToTest = new int[2];
+            pairToTest[0] = currentHand.cardsInHand.get(i).getValue().getIntValue();
+            pairToTest[1] = currentHand.cardsInHand.get(i + 1).getValue().getIntValue();
+            if (pairToTest[0] == pairToTest[1]) {
+                pair = pairToTest;
+                currentPlayer.setCurrentScore(PAIR);
             }
         }
 
-        if (pairCount == 2) {
-            currentPlayer.setCurrentScore(TWO_PAIRS);
-        } else if (pairCount == 2) {
-            currentPlayer.setCurrentScore(PAIR);
-        }
-
-        return pairs;
     }
 
 //    @Override

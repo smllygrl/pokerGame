@@ -8,8 +8,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 import static com.notleh.enums.EnumHandScores.*;
-import static com.notleh.services.HandEvaluator.pairTest;
-import static com.notleh.services.HandEvaluator.threeOfAKind;
+import static com.notleh.services.HandEvaluator.*;
 
 public class SolveDraw {
     //        As the hand is sorted, the FIRST card in the hand has the highest value
@@ -20,7 +19,8 @@ public class SolveDraw {
         EnumHandScores mutualScore = playerOne.getCurrentScore();
 
         switch(mutualScore) {
-            case PAIR, TWO_PAIRS -> solvePairDraw(playerOne, playerTwo, playerOneHand, playerTwoHand);
+            case PAIR -> solveOnePairDraw(playerOne, playerTwo, playerOneHand, playerTwoHand);
+            case TWO_PAIRS -> solveTwoPairDraw(playerOne, playerTwo, playerOneHand, playerTwoHand);
             case THREE_OF_KIND -> solveThreeOfAKindDraw(playerOne, playerTwo, playerOneHand, playerTwoHand);
             case FULL_HOUSE ->
             default -> getHighCard(playerOne, playerTwo, playerOneHand, playerTwoHand);
@@ -47,53 +47,40 @@ public class SolveDraw {
         } else solveSuperDraw(playerOne, playerTwo, playerOneHand, playerTwoHand);
     }
 
-    public static void solvePairDraw (Player playerOne, Player playerTwo, Hand playerOneHand, Hand playerTwoHand) {
+    public static void solveOnePairDraw (Player playerOne, Player playerTwo, Hand playerOneHand, Hand playerTwoHand) {
 
-        int[][] p1Pairs = pairTest(playerOne, playerOneHand);
-        System.out.println(Arrays.deepToString(p1Pairs));
-        int[][] p2Pairs = pairTest(playerTwo, playerTwoHand);
-        System.out.println(Arrays.deepToString(p2Pairs));
+        int[] playerOnePair = testForOnePair(playerOne, playerOneHand);
+        int[] playerTwoPair = testForOnePair(playerTwo, playerTwoHand);
 
-        int[] p1FirstPair = p1Pairs[0];
-        int[] p2FirstPair = p2Pairs[0];
+        if (playerOnePair[0] != playerTwoPair[0]) {
+            if (playerOnePair[0] > playerTwoPair[0]) {
 
-        int[] p1SecondPair = p1Pairs[1];
-        int[] p2SecondPair = p2Pairs[1];
-//        The check below determined if this is a PAIR or TWO_PAIR scenario
-        boolean secondPair = false;
-
-        if (p1SecondPair[0] != p1FirstPair[0]) {
-            {
-                if (p2SecondPair[0] != p2FirstPair[0]) {
-                    secondPair = true;
-                }
-            }
-
-        }
-
-        if (secondPair) {
-            System.out.println("**BELOW WAS A TWO PAIR DRAW");
-        } else {
-            System.out.println("*BELOW WAS A PAIR DRAW");
-        }
-
-        if (p1FirstPair[0] != p2FirstPair[0]) {
-            if (p1FirstPair[0] > p2FirstPair[0]) {
                 playerOne.setCurrentScore(HIGH_CARD);
                 playerTwo.setCurrentScore(LOST_DRAW);
             } else {
                 playerTwo.setCurrentScore(HIGH_CARD);
                 playerOne.setCurrentScore(LOST_DRAW);
             }
-        } else if (secondPair) {
-               if (p1SecondPair[0] > p2SecondPair[0]) {
-                   playerOne.setCurrentScore(HIGH_CARD);
-                   playerTwo.setCurrentScore(LOST_DRAW);
-               } else {
-                   playerTwo.setCurrentScore(HIGH_CARD);
-                   playerOne.setCurrentScore(LOST_DRAW);
-               }
         } else solveSuperDraw(playerOne, playerTwo, playerOneHand, playerTwoHand);
+    }
+
+    public static void solveTwoPairDraw (Player playerOne, Player playerTwo, Hand playerOneHand, Hand playerTwoHand) {
+//        An array of 2 ints, both representing the value of a pair eg [3, 12] = pair of 3s & pair of queens
+        int [] playerOnePairs = testForTwoPairs(playerOne, playerOneHand);
+        int playerOneHigh;
+        int [] playerTwoPairs = testForTwoPairs(playerTwo, playerTwoHand);
+        int playerTwoHigh;
+
+        playerOneHigh = Math.max(playerOnePairs[0], playerOnePairs[1]);
+        playerTwoHigh = Math.max(playerTwoPairs[0], playerTwoPairs[1]);
+
+        if (playerOneHigh > playerTwoHigh) {
+            playerOne.setCurrentScore(HIGH_CARD);
+            playerTwo.setCurrentScore(LOST_DRAW);
+        } else {
+            playerTwo.setCurrentScore(HIGH_CARD);
+            playerOne.setCurrentScore(LOST_DRAW);
+        }
     }
 
     public static void solveThreeOfAKindDraw (Player playerOne, Player playerTwo, Hand playerOneHand, Hand playerTwoHand) {

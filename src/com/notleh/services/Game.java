@@ -8,8 +8,7 @@ import com.notleh.enums.EnumHandScores;
 import java.io.FileNotFoundException;
 
 
-import static com.notleh.enums.EnumHandScores.STRAIGHT;
-import static com.notleh.enums.EnumHandScores.THREE_OF_KIND;
+import static com.notleh.enums.EnumHandScores.*;
 import static com.notleh.services.HandEvaluator.*;
 
 public class Game {
@@ -48,13 +47,18 @@ public class Game {
 
                             straightTest(player, playerHand);
 
-                            if (player.getCurrentScore() != STRAIGHT) {
+                            if (player.getCurrentScore() != EnumHandScores.STRAIGHT) {
 
                                 threeOfAKind(player, playerHand);
 
-                                if (player.getCurrentScore() != THREE_OF_KIND) {
+                                if (player.getCurrentScore() != EnumHandScores.THREE_OF_KIND) {
 
-                                    pairTest(player, playerHand);
+                                    testForTwoPairs(player, playerHand);
+
+                                    if (player.getCurrentScore() != EnumHandScores.TWO_PAIRS) {
+
+                                        testForOnePair(player, playerHand);
+                                    }
                                 }
                             }
                         }
