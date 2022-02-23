@@ -42,14 +42,14 @@ public class InitiateGame {
         int winner = 0;
 
         if (playerOne.getCurrentScore().getScore() > playerTwo.getCurrentScore().getScore()){
-            System.out.println("DEBUG: P1 Hand: " + playerOneHand.cardsInHand.toString() + ". P1 Score: " + playerOne.getCurrentScore().toString() + ".");
-            System.out.println("cont P2 Hand: " + playerTwoHand.cardsInHand.toString() + ". P2 Score: " + playerTwo.getCurrentScore().toString() + ".");
+//            System.out.println("DEBUG: P1 Hand: " + playerOneHand.cardsInHand.toString() + ". P1 Score: " + playerOne.getCurrentScore().toString() + ".");
+//            System.out.println("cont P2 Hand: " + playerTwoHand.cardsInHand.toString() + ". P2 Score: " + playerTwo.getCurrentScore().toString() + ".");
             winner = 1;
         }
 
         if (playerTwo.getCurrentScore().getScore() > playerOne.getCurrentScore().getScore()){
-            System.out.println("DEBUG: P2 Hand: " + playerTwoHand.cardsInHand.toString() + ". P2 Score: " + playerTwo.getCurrentScore().toString() + ".");
-            System.out.println("cont P1 Hand: " + playerOneHand.cardsInHand.toString() + ". P1 Score: " + playerOne.getCurrentScore().toString() + ".");
+//            System.out.println("DEBUG: P2 Hand: " + playerTwoHand.cardsInHand.toString() + ". P2 Score: " + playerTwo.getCurrentScore().toString() + ".");
+//            System.out.println("cont P1 Hand: " + playerOneHand.cardsInHand.toString() + ". P1 Score: " + playerOne.getCurrentScore().toString() + ".");
             winner = 2;
         }
 
