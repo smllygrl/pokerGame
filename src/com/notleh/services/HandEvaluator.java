@@ -19,6 +19,7 @@ public class HandEvaluator {
 //    Helper methods
     public static Boolean sameSuit (String firstCardSuit, Hand currentHand) {
         boolean sameSuit = false;
+
 //        Starts at 1 as the firstSuitCard is a param for this method
         for (int j = 1; j < HAND_SIZE; j++) {
             if (currentHand.cardsInHand.get(j).getSuit().toString() == firstCardSuit) {
@@ -49,6 +50,7 @@ public class HandEvaluator {
         boolean sameValue = false;
         int valueToCompare = cardValues[FIRST_CARD];
 
+//        Starts at 1 as 0 is the card to which we compare all others
         for (int i = 1; i < cardValues.length; i++) {
             if (cardValues[i] == valueToCompare){
                 sameValue = true;
@@ -66,7 +68,8 @@ public class HandEvaluator {
 
     public static void royalFlushTest(Player currentPlayer, Hand currentHand) {
 
-        if (Objects.equals(currentHand.cardsInHand.get(FIRST_CARD).getValue().getIntValue(), EnumCardValues.ACE.getIntValue())) {
+
+      if (Objects.equals(currentHand.cardsInHand.get(FIRST_CARD).getValue().getIntValue(), EnumCardValues.ACE.getIntValue())) {
             if (descendingOrder(currentHand)){
                 String suitToCompare = currentHand.cardsInHand.get(FIRST_CARD).getSuit().toString();
                 if (sameSuit(suitToCompare, currentHand)){
@@ -107,6 +110,7 @@ public class HandEvaluator {
                     return;
                 }
             }
+
         }
 
     }
@@ -138,7 +142,6 @@ public class HandEvaluator {
                         currentHand.cardsInHand.get(1 + i).getValue().getIntValue(),
                         currentHand.cardsInHand.get(2 + i).getValue().getIntValue()
                 };
-
 
                 if (sameValue(threeToCheck)) {
                     currentPlayer.setCurrentScore(FULL_HOUSE);
@@ -188,7 +191,9 @@ public class HandEvaluator {
                     currentHand.cardsInHand.get(2 + i).getValue().getIntValue()
             };
 
+
             for (int j = 0; j < ThreePossibilities; j++) {
+
 
                 if (sameValue(threeToCheck)) {
                     sameThree = threeToCheck;
@@ -196,8 +201,8 @@ public class HandEvaluator {
                     return sameThree;
                 } break;
 
-            }
 
+            }
         }
 
         return sameThree;

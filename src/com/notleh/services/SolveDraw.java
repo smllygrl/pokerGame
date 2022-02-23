@@ -28,6 +28,7 @@ public class SolveDraw {
     }
 
     public static void getHighCard (Player playerOne, Player playerTwo, Hand playerOneHand, Hand playerTwoHand) {
+
         int playerOneHighCard = playerOneHand.cardsInHand.get(0).getValue().intValue;
         int playerTwoHighCard = playerTwoHand.cardsInHand.get(0).getValue().intValue;
 

@@ -20,9 +20,9 @@ public class InputHandler {
         String line = "";
 
         if (sc.hasNext()) {
-            System.out.println("Running txt file");
+//            System.out.println("Running txt file");
             line = sc.nextLine();
-            System.out.println(line);
+//            System.out.println(line);
         } else manualInput();
 
 
