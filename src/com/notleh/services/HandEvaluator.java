@@ -78,7 +78,7 @@ public class HandEvaluator {
 
     public static void straightFlushTest(Player currentPlayer, Hand currentHand)
     {
-//        STRAIGHT FLUSH WORKS
+
         if (descendingOrder(currentHand)){
             String suitToCompare = currentHand.cardsInHand.get(FIRST_CARD).getSuit().toString();
             if (sameSuit(suitToCompare, currentHand)){
@@ -91,8 +91,6 @@ public class HandEvaluator {
 
 //       This will check whether there are 4 of the value in currentHand
 //       There are only two possibilities as the hand is sorted
-//       same, same, same, same, NOT
-//       NOT, same, same, same, same
 
         int TwoPossibilities = 2;
 
@@ -115,46 +113,44 @@ public class HandEvaluator {
 
     public static void fullHouseTest (Player currentPlayer, Hand currentHand) {
 
-//        This will check if a pair is amongst the hand, as well as if there is a threeOfAKind
-//        As the hand is sorted, if it is a full house, it is either PAIR, PAIR, THREE, THREE, THREE or THREE, THREE, THREE, PAIR, PAIR
+// For this test, I execute the three of a kind and pair check. If both are true, there is a full house
 
-        int[] firstTwo =
-                {
-                        currentHand.cardsInHand.get(0).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(1).getValue().getIntValue()
-                };
-        int[] lastThree =
-                {
-                        currentHand.cardsInHand.get(2).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(3).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(4).getValue().getIntValue()
-                };
+        boolean pair = false;
 
-        if (sameValue(firstTwo)) {
-            if (sameValue(lastThree)) {
-                System.out.println("FULL HOUSE: " + currentHand.cardsInHand.toString());
-                currentPlayer.setCurrentScore(FULL_HOUSE);
+        for (int i = 0; i < HAND_SIZE - 1; i++) {
+                int [] pairToTest = new int[2];
+                pairToTest[0] = currentHand.cardsInHand.get(i).getValue().getIntValue();
+                pairToTest[1] = currentHand.cardsInHand.get(i + 1).getValue().getIntValue();
+            if (pairToTest[0] == pairToTest[1]) {
+                pair = true;
+                break;
             }
+
         }
 
-        int[] firstThree =
-                {
-                        currentHand.cardsInHand.get(0).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(1).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(2).getValue().getIntValue()
-                };
-        int[] lastTwo =
-                {
-                        currentHand.cardsInHand.get(3).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(4).getValue().getIntValue()
+//        Only executes the three of a kind check if there is a pair in the hand
+        if (pair) {
+
+            for (int i = 0; i < 3; i++) {
+
+                int[] threeToCheck = {
+                        currentHand.cardsInHand.get(i).getValue().getIntValue(),
+                        currentHand.cardsInHand.get(1 + i).getValue().getIntValue(),
+                        currentHand.cardsInHand.get(2 + i).getValue().getIntValue()
                 };
 
-        if (sameValue(firstThree)) {
-            if (sameValue(lastTwo)) {
-                System.out.println("FULL HOUSE: " + currentHand.cardsInHand.toString());
-                currentPlayer.setCurrentScore(FULL_HOUSE);
+
+                if (sameValue(threeToCheck)) {
+                    currentPlayer.setCurrentScore(FULL_HOUSE);
+                    return;
+                }
+
+                break;
+
             }
+
         }
+
     }
 
 
@@ -212,7 +208,7 @@ public class HandEvaluator {
         int pairSize = 2;
         int[] firstPair = new int [pairSize];
         int[] secondPair = new int[pairSize];
-        int[] returnArray = new int[pairSize];
+
 
         for (int i = 0; i < HAND_SIZE - 1; i++) {
                 int [] pairToTest = new int[pairSize];
@@ -229,8 +225,10 @@ public class HandEvaluator {
                 }
         }
 
+        int[] returnArray = new int[pairSize];
+
+//      Creates an array with the two values of the pairs for any draw solving
         if (secondPair[0] != 0) {
-//            Creates an array with the two values of the pairs for any draw solving
             returnArray[0] = firstPair[0];
             returnArray[1] = secondPair[0];
             currentPlayer.setCurrentScore(TWO_PAIRS);
