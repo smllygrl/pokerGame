@@ -17,8 +17,8 @@ public class Main {
 
         int playerOneWinCount = 0;
         int playerTwoWinCount = 0;
-        int gameCount = 0;
-        int failCount = 0;
+//        int gameCount = 0;
+//        int failCount = 0;
 
         File file = new File("/Users/NLH/Desktop/poker-hands.txt");
         Scanner sc = new Scanner(file);
@@ -27,7 +27,7 @@ public class Main {
            String line = sc.nextLine();
            int winner = initiateGame(line);
 
-           gameCount ++;
+//           gameCount ++;
 
            if (winner == 1) {
                playerOneWinCount++;

@@ -12,14 +12,17 @@ import static com.notleh.enums.EnumHandScores.*;
 public class HandEvaluator {
 
     static int HAND_SIZE = 5;
+    static int FIRST_CARD = 0;
 
 //    ALL HANDS ARE IN DESCENDING (THE HIGHEST INT VALUE FIRST) ORDER
 
 //    Helper methods
-    public static Boolean sameSuit (String suitToCompare, Hand currentHand) {
+    public static Boolean sameSuit (String firstCardSuit, Hand currentHand) {
         boolean sameSuit = false;
+
+//        Starts at 1 as the firstSuitCard is a param for this method
         for (int j = 1; j < HAND_SIZE; j++) {
-            if (currentHand.cardsInHand.get(j).getSuit().toString() == suitToCompare) {
+            if (currentHand.cardsInHand.get(j).getSuit().toString() == firstCardSuit) {
                 sameSuit = true;
             } else {
                 sameSuit = false;
@@ -31,7 +34,7 @@ public class HandEvaluator {
 
     public static Boolean descendingOrder (Hand currentHand) {
         boolean descendingOrder = false;
-        int startValue = currentHand.cardsInHand.get(0).getValue().getIntValue();
+        int startValue = currentHand.cardsInHand.get(FIRST_CARD).getValue().getIntValue();
         for (int i = 1; i < HAND_SIZE; i++) {
             if (currentHand.cardsInHand.get(i).getValue().getIntValue() == startValue - i) {
                 descendingOrder = true;
@@ -45,7 +48,7 @@ public class HandEvaluator {
 
     public static Boolean sameValue (int[] cardValues) {
         boolean sameValue = false;
-        int valueToCompare = cardValues[0];
+        int valueToCompare = cardValues[FIRST_CARD];
 
 //        Starts at 1 as 0 is the card to which we compare all others
         for (int i = 1; i < cardValues.length; i++) {
@@ -64,10 +67,11 @@ public class HandEvaluator {
 //    Tests begin
 
     public static void royalFlushTest(Player currentPlayer, Hand currentHand) {
-//        Checks if ACE (the highest int value) is the first in the hand
-        if (Objects.equals(currentHand.cardsInHand.get(0).getValue().getIntValue(), EnumCardValues.ACE.getIntValue())) {
+
+
+      if (Objects.equals(currentHand.cardsInHand.get(FIRST_CARD).getValue().getIntValue(), EnumCardValues.ACE.getIntValue())) {
             if (descendingOrder(currentHand)){
-                String suitToCompare = currentHand.cardsInHand.get(0).getSuit().toString();
+                String suitToCompare = currentHand.cardsInHand.get(FIRST_CARD).getSuit().toString();
                 if (sameSuit(suitToCompare, currentHand)){
                     currentPlayer.setCurrentScore(ROYAL_FLUSH);
                 }
@@ -77,9 +81,9 @@ public class HandEvaluator {
 
     public static void straightFlushTest(Player currentPlayer, Hand currentHand)
     {
-//        STRAIGHT FLUSH WORKS
+
         if (descendingOrder(currentHand)){
-            String suitToCompare = currentHand.cardsInHand.get(0).getSuit().toString();
+            String suitToCompare = currentHand.cardsInHand.get(FIRST_CARD).getSuit().toString();
             if (sameSuit(suitToCompare, currentHand)){
                 currentPlayer.setCurrentScore(STRAIGHT_FLUSH);
             }
@@ -88,83 +92,75 @@ public class HandEvaluator {
 
     public static void fourOfAKind (Player currentPlayer, Hand currentHand) {
 
-//        FOUR OF A KIND WORKS
+//       This will check whether there are 4 of the value in currentHand
+//       There are only two possibilities as the hand is sorted
 
-//        This will check whether there are 4 of the value in currentHand
+        int TwoPossibilities = 2;
 
-//        notSame, same, same, same, same
-        int [] lastFour = {
-                currentHand.cardsInHand.get(1).getValue().getIntValue(),
-                currentHand.cardsInHand.get(2).getValue().getIntValue(),
-                currentHand.cardsInHand.get(3).getValue().getIntValue(),
-                currentHand.cardsInHand.get(4).getValue().getIntValue()
-        };
+        for (int i = 0; i < TwoPossibilities; i++) {
+            int [] fourCards = {
+                    currentHand.cardsInHand.get(i).getValue().getIntValue(),
+                    currentHand.cardsInHand.get(i + 1).getValue().getIntValue(),
+                    currentHand.cardsInHand.get(i + 2).getValue().getIntValue(),
+                    currentHand.cardsInHand.get(i + 3).getValue().getIntValue()
+            };
+            for (int j = 0; j < TwoPossibilities; j++) {
+                if (sameValue(fourCards)){
+                    currentPlayer.setCurrentScore(FOUR_OF_KIND);
+                    return;
+                }
+            }
 
-        if (sameValue(lastFour)){
-            currentPlayer.setCurrentScore(FOUR_OF_KIND);
-        }
-//        OR
-//        same, same, same, same, notSame
-        int [] firstFour = {
-                currentHand.cardsInHand.get(0).getValue().getIntValue(),
-                currentHand.cardsInHand.get(1).getValue().getIntValue(),
-                currentHand.cardsInHand.get(2).getValue().getIntValue(),
-                currentHand.cardsInHand.get(3).getValue().getIntValue()
-        };
-
-        if (sameValue(firstFour)){
-            currentPlayer.setCurrentScore(FOUR_OF_KIND);
         }
 
     }
 
     public static void fullHouseTest (Player currentPlayer, Hand currentHand) {
 
-//        This will check if a pair is amongst the hand, as well as if there is a threeOfAKind
-//        As the hand is sorted, if it is a full house, it is either PAIR, PAIR, THREE, THREE, THREE or THREE, THREE, THREE, PAIR, PAIR
+// For this test, I execute the three of a kind and pair check. If both are true, there is a full house
 
-        int[] firstTwo =
-                {
-                        currentHand.cardsInHand.get(0).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(1).getValue().getIntValue()
-                };
-        int[] lastThree =
-                {
-                        currentHand.cardsInHand.get(2).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(3).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(4).getValue().getIntValue()
-                };
+        boolean pair = false;
 
-        if (sameValue(firstTwo)) {
-            if (sameValue(lastThree)) {
-                currentPlayer.setCurrentScore(FULL_HOUSE);
+        for (int i = 0; i < HAND_SIZE - 1; i++) {
+                int [] pairToTest = new int[2];
+                pairToTest[0] = currentHand.cardsInHand.get(i).getValue().getIntValue();
+                pairToTest[1] = currentHand.cardsInHand.get(i + 1).getValue().getIntValue();
+            if (pairToTest[0] == pairToTest[1]) {
+                pair = true;
+                break;
             }
+
         }
 
-        int[] firstThree =
-                {
-                        currentHand.cardsInHand.get(0).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(1).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(2).getValue().getIntValue()
-                };
-        int[] lastTwo =
-                {
-                        currentHand.cardsInHand.get(3).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(4).getValue().getIntValue()
+//        Only executes the three of a kind check if there is a pair in the hand
+        if (pair) {
+
+            for (int i = 0; i < 3; i++) {
+
+                int[] threeToCheck = {
+                        currentHand.cardsInHand.get(i).getValue().getIntValue(),
+                        currentHand.cardsInHand.get(1 + i).getValue().getIntValue(),
+                        currentHand.cardsInHand.get(2 + i).getValue().getIntValue()
                 };
 
-        if (sameValue(firstThree)) {
-            if (sameValue(lastTwo)) {
-                currentPlayer.setCurrentScore(FULL_HOUSE);
+                if (sameValue(threeToCheck)) {
+                    currentPlayer.setCurrentScore(FULL_HOUSE);
+                    return;
+                }
+
+                break;
+
             }
+
         }
+
     }
 
 
     public static void flushTest(Player currentPlayer, Hand currentHand)
     {
 //        FLUSH TEST WORKS
-        String suitToCompare = currentHand.cardsInHand.get(0).getSuit().toString();
+        String suitToCompare = currentHand.cardsInHand.get(FIRST_CARD).getSuit().toString();
         if(sameSuit(suitToCompare, currentHand)){
             currentPlayer.setCurrentScore(FLUSH);
         }
@@ -182,40 +178,31 @@ public class HandEvaluator {
     public static int[] threeOfAKind (Player currentPlayer, Hand currentHand) {
 
 //        As the hand is sorted, the three will either be the first three cards, the last three, or the middle three
+        int ThreePossibilities = 3;
 
+//        The array below is used for solving draws
         int[] sameThree = new int[3];
 
-        int[] firstThree =
-                {
-                        currentHand.cardsInHand.get(0).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(1).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(2).getValue().getIntValue()};
+        for (int i = 0; i < ThreePossibilities; i++) {
 
-        if (sameValue(firstThree)) {
-            sameThree = firstThree;
-            currentPlayer.setCurrentScore(THREE_OF_KIND);
-        }
+            int[] threeToCheck = {
+                    currentHand.cardsInHand.get(i).getValue().getIntValue(),
+                    currentHand.cardsInHand.get(1 + i).getValue().getIntValue(),
+                    currentHand.cardsInHand.get(2 + i).getValue().getIntValue()
+            };
 
-        int[] middleThree =
-                {
-                        currentHand.cardsInHand.get(1).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(2).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(3).getValue().getIntValue()};
 
-        if (sameValue(middleThree)) {
-            sameThree = firstThree;
-            currentPlayer.setCurrentScore(THREE_OF_KIND);
-        }
+            for (int j = 0; j < ThreePossibilities; j++) {
 
-        int[] lastThree =
-                {
-                        currentHand.cardsInHand.get(2).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(3).getValue().getIntValue(),
-                        currentHand.cardsInHand.get(4).getValue().getIntValue()};
 
-        if (sameValue(lastThree)) {
-            sameThree = lastThree;
-            currentPlayer.setCurrentScore(THREE_OF_KIND);
+                if (sameValue(threeToCheck)) {
+                    sameThree = threeToCheck;
+                    currentPlayer.setCurrentScore(THREE_OF_KIND);
+                    return sameThree;
+                } break;
+
+
+            }
         }
 
         return sameThree;
@@ -226,7 +213,7 @@ public class HandEvaluator {
         int pairSize = 2;
         int[] firstPair = new int [pairSize];
         int[] secondPair = new int[pairSize];
-        int[] returnArray = new int[pairSize];
+
 
         for (int i = 0; i < HAND_SIZE - 1; i++) {
                 int [] pairToTest = new int[pairSize];
@@ -243,8 +230,10 @@ public class HandEvaluator {
                 }
         }
 
+        int[] returnArray = new int[pairSize];
+
+//      Creates an array with the two values of the pairs for any draw solving
         if (secondPair[0] != 0) {
-//            Creates an array with the two values of the pairs for any draw solving
             returnArray[0] = firstPair[0];
             returnArray[1] = secondPair[0];
             currentPlayer.setCurrentScore(TWO_PAIRS);

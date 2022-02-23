@@ -49,11 +49,6 @@ public class InitiateGame {
             winner = 2;
         }
 
-//        if (winner == 0) {
-//            System.out.println("DEBUG INFO - Input: " + inputLine + ". P1 hand: " + playerOneHand.cardsInHand.toString() + ". P2 hand: " + playerTwoHand.cardsInHand.toString() + ".");
-//            System.out.println("CONT - P1 score: " + playerOne.getCurrentScore().getScore() + ". P2 score: " + playerTwo.getCurrentScore().getScore());
-//        }
-
         return winner;
     }
 

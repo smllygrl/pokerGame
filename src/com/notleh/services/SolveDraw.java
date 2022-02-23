@@ -28,7 +28,7 @@ public class SolveDraw {
     }
 
     public static void getHighCard (Player playerOne, Player playerTwo, Hand playerOneHand, Hand playerTwoHand) {
-//        System.out.println("DRAW: P1 Score - " + playerOne.getCurrentScore().toString() + ". P2 Score: " + playerTwo.getCurrentScore().toString());
+
         int playerOneHighCard = playerOneHand.cardsInHand.get(0).getValue().intValue;
         int playerTwoHighCard = playerTwoHand.cardsInHand.get(0).getValue().intValue;
 
@@ -100,61 +100,29 @@ public class SolveDraw {
     }
 
     public static void solveSuperDraw (Player playerOne, Player playerTwo, Hand playerOneHand, Hand playerTwoHand) {
-        int playerOneSecondHighestCard = playerOneHand.cardsInHand.get(1).getValue().intValue;
-        int playerTwoSecondHighestCard = playerTwoHand.cardsInHand.get(1).getValue().intValue;
 
-        int playerOneThirdHighestCard = playerOneHand.cardsInHand.get(2).getValue().intValue;
-        int playerTwoThirdHighestCard = playerTwoHand.cardsInHand.get(2).getValue().intValue;
+//        Starts on 1 as if cards are the same on index 0, this method is called
+        for (int i = 1; i < HAND_SIZE; i++) {
 
-        int playerOneFourthHighestCard = playerOneHand.cardsInHand.get(3).getValue().intValue;
-        int playerTwoFourthHighestCard = playerTwoHand.cardsInHand.get(3).getValue().intValue;
+            int p1card = playerOneHand.cardsInHand.get(i).getValue().intValue;
+            int p2card = playerTwoHand.cardsInHand.get(i).getValue().intValue;
 
-        int playerOneFifthHighestCard = playerOneHand.cardsInHand.get(4).getValue().intValue;
-        int playerTwoFifthHighestCard = playerTwoHand.cardsInHand.get(4).getValue().intValue;
+            for (int j = 0; j < HAND_SIZE; j++) {
 
-        if (playerOneSecondHighestCard != playerTwoSecondHighestCard)
-        {
-            if (playerOneSecondHighestCard > playerTwoSecondHighestCard)
-            {
-                playerOne.setCurrentScore(HIGH_CARD);
-                playerTwo.setCurrentScore(LOST_DRAW);
-            } else {
-                playerTwo.setCurrentScore(HIGH_CARD);
-                playerOne.setCurrentScore(LOST_DRAW);
+                if (p1card != p2card) {
+                    if (p1card > p2card)
+                    {
+                        playerOne.setCurrentScore(HIGH_CARD);
+                        playerTwo.setCurrentScore(LOST_DRAW);
+                    } else {
+                        playerTwo.setCurrentScore(HIGH_CARD);
+                        playerOne.setCurrentScore(LOST_DRAW);
+                    }
+                    return;
+                } else break;
+
             }
+        }
 
-        } else if (playerOneThirdHighestCard != playerTwoThirdHighestCard)
-        {
-            if (playerOneThirdHighestCard > playerTwoThirdHighestCard)
-            {
-                playerOne.setCurrentScore(HIGH_CARD);
-                playerTwo.setCurrentScore(LOST_DRAW);
-            } else {
-                playerTwo.setCurrentScore(HIGH_CARD);
-                playerOne.setCurrentScore(LOST_DRAW);
-            }
-
-        } else if (playerOneFourthHighestCard != playerTwoFourthHighestCard)
-        {
-            if (playerOneFourthHighestCard > playerTwoFourthHighestCard)
-                {
-                    playerOne.setCurrentScore(HIGH_CARD);
-                    playerTwo.setCurrentScore(LOST_DRAW);
-                } else {
-                playerTwo.setCurrentScore(HIGH_CARD);
-                playerOne.setCurrentScore(LOST_DRAW);
-            }
-
-        } else if (playerOneFifthHighestCard != playerTwoFifthHighestCard)
-        {
-            if (playerOneFifthHighestCard > playerTwoFifthHighestCard)
-        {
-            playerOne.setCurrentScore(HIGH_CARD);
-            playerTwo.setCurrentScore(LOST_DRAW);
-        } else {
-            playerTwo.setCurrentScore(HIGH_CARD);
-            playerOne.setCurrentScore(LOST_DRAW);
-            }
-        } else System.out.println("Both players have the same high card, the draw cannot be solved");
 }
 }
