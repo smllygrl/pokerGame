@@ -10,5 +10,8 @@ eg. AH 9S 4D TD 8S 4H JS 3C TC 8D
 
 - And each player had 5 cards each
 
-It then returns who won the game by virtue of checks
+________________________________________
+### The Logic
+
+
 
