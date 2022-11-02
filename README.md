@@ -11,7 +11,19 @@ eg. AH 9S 4D TD 8S 4H JS 3C TC 8D
 - And each player had 5 cards each
 
 ________________________________________
-### The Logic
+### Project
 
+This project was the first application I built in Java.
 
+Several concepts in Java were consolidated in this project, such as polymorphism, inheritance, and interfaces.
+
+Some work is still required for this project to be at a standard I am comfortable with such as...
+
+- Proper implementation of interfaces
+
+- Exception handling
+
+- Making it a bit DRY-er (Don't repeat yourself)
+
+- JUnit tests
 
