@@ -37,6 +37,9 @@ ________________________________________
 Player 1: 263
 Player 2: 237
 ```
+- Current output as of 15/11/2022
+![image](https://user-images.githubusercontent.com/90227438/201807198-09cea25c-d460-40b4-af61-c77062d1b590.png)
+
 ________________________________________
 ### Class Structure
 
