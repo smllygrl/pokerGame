@@ -26,5 +26,18 @@ Some work is still required for this project to be at a standard I am comfortabl
 - Making it a bit DRY-er (Don't repeat yourself)
 
 - JUnit tests
+________________________________________
+### How to run
+
+- Clone repo
+- Ensure poker-hands.txt is pointed to in file scanner in Main class
+- Run as Java Application
+- Expected output of .txt file is
+```
+Player 1: 263
+Player 2: 237
+```
+________________________________________
+### Class Structure
 
 ![image](https://user-images.githubusercontent.com/90227438/201806443-215b3f07-d2f9-445c-823a-261119683ded.png)
